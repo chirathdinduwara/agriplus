@@ -1,8 +1,5 @@
-
-
-
-import '../../css/HomePage/home.css';
-import videoBg from '../../assets/videos/home-bg.mp4';
+import "../../css/HomePage/home.css";
+import videoBg from "../../assets/videos/home-bg.mp4";
 
 function Home() {
     return(
@@ -23,4 +20,4 @@ function Home() {
     );
 }
 
-export default Home; 
+export default Home;
