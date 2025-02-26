@@ -7,6 +7,7 @@ import Home from './components/HomePage/Home.jsx'
 import Contact from './pages/Contact.jsx'
 import About from './pages/About.jsx'
 import Store from './pages/Store.jsx'
+import Login from './components/LoginPage/Login.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         element: <Store />
       }
     ]
+  }, 
+  {
+    path: 'login',
+    element: <Login />
   }
 ])
 
