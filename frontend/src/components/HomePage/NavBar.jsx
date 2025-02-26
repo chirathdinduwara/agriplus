@@ -1,8 +1,12 @@
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import '../../css/HomePage/navbar.css'
 import logo from "../../assets/Graphics/logo.png"
 
 
+
+function handleLogIn() {
+    navigate('/login');
+}
 
 function NavBar() {
     return (
@@ -17,7 +21,7 @@ function NavBar() {
                    
                 </ul>
                 <div className="nav-actions">
-                <button className="log-in">Log In</button>
+                <button className="log-in" onClick={handleLogIn}>Log In</button>
                 <button className="log-in">Sign Up</button>
                 </div>
             </nav>
