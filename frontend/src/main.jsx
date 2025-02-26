@@ -9,7 +9,8 @@ import Home from './components/HomePage/Home.jsx'
 import Contact from './pages/Contact.jsx'
 import About from './pages/About.jsx'
 import Store from './pages/Store.jsx'
-import Login from './components/LoginPage/Login.jsx'
+import Login from './pages/LoginPages/Login.jsx'
+import AdminLogin from './pages/LoginPages/AdminLogin.jsx'
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: 'login',
     element: <Login />
+  },
+  {
+    path: 'admin',
+    element: <AdminLogin />
   }
 ])
 
