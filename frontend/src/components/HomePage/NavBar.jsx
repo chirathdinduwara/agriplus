@@ -3,12 +3,15 @@ import '../../css/HomePage/navbar.css'
 import logo from "../../assets/Graphics/logo.png"
 
 
-
-function handleLogIn() {
-    navigate('/login');
-}
-
 function NavBar() {
+
+    const navigate = useNavigate();
+
+    function handleLogIn() {
+        navigate('/login');
+    }
+
+
     return (
         <>
             <nav className="home-nav">
