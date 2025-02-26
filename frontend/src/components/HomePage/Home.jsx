@@ -13,8 +13,6 @@ function Home() {
                     <p className="home-hero-heading3">IN THE WORLD</p>   
                     <button className='log-in gap'>Discover More</button>  
                 </div>
-
-                
             </div>
         </>
     );

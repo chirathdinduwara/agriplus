@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
 import '../../css/HomePage/navbar.css'
+import logo from "../../assets/Graphics/logo.png"
 
 
 
@@ -7,7 +8,7 @@ function NavBar() {
     return (
         <>
             <nav className="home-nav">
-                <h1 className="logo">AgriPlus.</h1>
+                <img src={logo} alt="logo" className="logo" />
                 <ul>
                     <li><Link to='/' className='nav-link'>Home</Link></li>
                     <li><Link to='/store' className='nav-link'>Shop</Link></li>
