@@ -7,6 +7,12 @@ import Home from './components/HomePage/Home.jsx'
 import Contact from './pages/Contact.jsx'
 import About from './pages/About.jsx'
 import Store from './pages/Store.jsx'
+import Login from './pages/LoginPages/Login.jsx'
+import AdminLogin from './pages/LoginPages/AdminLogin.jsx'
+
+//user manager section
+import AdminDash from './components/User_Manager/admin_dash.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -31,6 +37,19 @@ const router = createBrowserRouter([
         element: <Store />
       }
     ]
+  }, 
+  {
+    path: 'login',
+    element: <Login />
+  },
+  {
+    path: 'admin',
+    element: <AdminLogin />
+  },
+  //user manager section
+  {
+    path: 'admin_dashboard',
+    element: <AdminDash />
   }
 ])
 
