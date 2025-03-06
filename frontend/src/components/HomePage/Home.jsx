@@ -11,10 +11,8 @@ function Home() {
                     <p className='home-hero-heading'>Sri Lanka</p>
                     <p className="home-hero-heading2">BEST HARVEST</p>            
                     <p className="home-hero-heading3">IN THE WORLD</p>   
-                    <button className='log-in gap'>ooiscover More</button>  
+                    <button className='log-in gap'>Discover More</button>  
                 </div>
-
-                
             </div>
         </>
     );
