@@ -1,4 +1,4 @@
-import DeliveryStatus from "../../models/Order_and_Delivery/delivery_person_status.model.js";
+import DeliveryStatus from "../../models/Delivery_Management/delivery_person_status.model.js";
 
 export const updateDeliveryStatus = async (req, res) => {
   const { email, status } = req.body;
@@ -24,7 +24,7 @@ export const updateDeliveryStatus = async (req, res) => {
     const updatedStatus = await DeliveryStatus.findOneAndUpdate(
       { email },
       { status },
-      { new: true, upsert: true } // upsert: true will create a new document if none is found
+      { new: true, upsert: true } 
     );
 
     res
