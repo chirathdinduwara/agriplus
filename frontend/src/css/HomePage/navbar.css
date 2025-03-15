@@ -69,4 +69,13 @@
     width: 100%;
 }
 
+.nav-c {
+    display: flex;
+    gap: 20px;
+    color: white;
+}
 
+.white {
+    text-decoration: none;
+    color: white;
+}
