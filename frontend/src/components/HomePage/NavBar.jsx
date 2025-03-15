@@ -1,15 +1,36 @@
 import {Link, useNavigate} from 'react-router-dom'
 import '../../css/HomePage/navbar.css'
 import logo from "../../assets/Graphics/logo.png"
-
+import { useState, useEffect } from 'react';
+import { jwtDecode } from "jwt-decode";
 
 function NavBar() {
 
     const navigate = useNavigate();
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userName, setUserName] = useState("");
+    
+    const logout = () => {
+        localStorage.removeItem("token");
+        window.location.reload();
+    };
+
     function handleLogIn() {
         navigate('/login');
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem('token'); 
+        if (token) {
+            setIsLoggedIn(true); // User is logged in
+            
+            const decodedToken = jwtDecode(token);
+            setUserName(decodedToken.name); 
+        } else {
+            setIsLoggedIn(false); // User is not logged in
+        }
+    }, []);
 
 
     return (
@@ -23,10 +44,25 @@ function NavBar() {
                     <li><Link to='/contact' className='nav-link'>Contacts</Link></li>
                    
                 </ul>
-                <div className="nav-actions">
-                <button className="log-in" onClick={handleLogIn}>Log In</button>
-                <button className="log-in">Sign Up</button>
+                <div>
+                {isLoggedIn ? (
+                    <>
+                        <div className="nav-c">
+                            <h1>Hi! <Link to="/cus-dash" className='white'>{userName}</Link></h1>
+                            <button className='log-in' onClick={logout} type="submit">Log Out</button>
+                        </div>
+                        
+                    </>
+                    ) : (
+                        <>
+                            <div className="nav-actions">
+                                <button className="log-in" onClick={handleLogIn}>Log In</button>
+                                <button className="log-in">Sign Up</button>
+                            </div>
+                        </>
+                )}
                 </div>
+
             </nav>
         </>
     );

@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Admin from "../models/admin.model.js";
+import User from "../models/user.model.js";
 
 //customer
 export const registerUser = async (req,res) => {
@@ -29,6 +30,79 @@ export const registerUser = async (req,res) => {
         res.status(500).json({ success: false, message: "Server Error" });
       }
 }
+
+export const userLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ success: false, message: "Invalid email or password" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ success: false, message: "Invalid email or password" });
+
+    const token = jwt.sign({ id: user._id, name: user.full_name, email: user.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+    res.status(200).json({ success: true, token });
+
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}
+
+export const allUsers =  async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ success: true, users });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const getUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id);
+    res.status(200).json({ success: true, user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const removeUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await User.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: "User Deleted" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Delete Failed!" });
+  }
+};
+
+export const updateUser = async (req, res) => {
+  const { id } = req.params; 
+  const { full_name, email, address, phone, password } = req.body; 
+  
+  try {
+    // Find the user by ID and update their details
+    const user = await User.findByIdAndUpdate(id, {
+      full_name,
+      email,
+      address,
+      phone,
+      password
+    }, { new: true }); 
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    res.status(200).json({ success: true, user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
 
 //admin
 export const adminLogin = async (req, res) => {
