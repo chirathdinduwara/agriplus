@@ -11,6 +11,11 @@ import About from './pages/About.jsx'
 import Store from './pages/Store.jsx'
 import Login from './pages/LoginPages/Login.jsx'
 import AdminLogin from './pages/LoginPages/AdminLogin.jsx'
+import AdminDashboard from './pages/Dashboards/AdminDashboard.jsx'
+import AdminDash from './components/AdminDashboard/AdminDash.jsx'
+import ManageUser from './components/AdminDashboard/ManageUser.jsx'
+import AddUser from './components/AdminDashboard/AddUser.jsx'
+import UpdateUser from './components/AdminDashboard/UpdateUser.jsx'
 
 <<<<<<< HEAD
 //user manager section
@@ -51,6 +56,7 @@ const router = createBrowserRouter([
     path: 'admin',
     element: <AdminLogin />
 <<<<<<< HEAD
+<<<<<<< HEAD
   },
   //user manager section
   {
@@ -58,6 +64,30 @@ const router = createBrowserRouter([
     element: <AdminDash />
 =======
 >>>>>>> master
+=======
+  },
+  {
+    path: 'a-dash',
+    element: <AdminDashboard />,
+    children: [
+      {
+        index: true,
+        element: <AdminDash />
+      },
+      {
+        path: 'manUser',
+        element: <ManageUser />
+      },
+      {
+        path: 'addUser',
+        element: <AddUser />
+      },
+      {
+        path: 'updateUser/:userId',
+        element: <UpdateUser />
+      }
+    ]
+>>>>>>> 4b251568305d68b2d85069a363c8ba24ed9a347b
   }
 ])
 
