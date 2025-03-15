@@ -42,7 +42,7 @@ function AdminLogin() {
             toast.success("Login Successful!");
             localStorage.setItem("token", data.token);
             setTimeout(() => {
-                navigate("/a-dashboard");  // Redirect after login
+                navigate("/a-dash");  // Redirect after login
             }, 1000);
         } else {
             toast.error(data.message || "Login failed, please check your credentials.");

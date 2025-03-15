@@ -150,3 +150,12 @@ export const registerAdmin = async (req,res) => {
       res.status(500).json({ success: false, message: "Server Error" });
     }
 }
+
+export const getAdmins = async (req, res) => {
+  try {
+    const admin = await Admin.find();
+    res.status(200).json({ success: true, admin });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};

@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser, adminLogin, registerAdmin, userLogin, allUsers, getUser, updateUser, removeUser } from "../controllers/auth.controller.js";
+import { registerUser, adminLogin, registerAdmin, userLogin, allUsers, getUser, updateUser, removeUser, getAdmins } from "../controllers/auth.controller.js";
 
 
 const router = express.Router();
@@ -12,7 +12,8 @@ router.put("/user/:id", updateUser);
 router.delete("/user/:id", removeUser);
 
 router.post("/adminLogin", adminLogin);
-router.post("/adminSignUp" , registerAdmin)
+router.post("/adminSignUp" , registerAdmin);
+router.get("/admin", getAdmins);
 
 
 export default router;
