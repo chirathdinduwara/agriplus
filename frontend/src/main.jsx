@@ -17,12 +17,6 @@ import ManageUser from './components/AdminDashboard/ManageUser.jsx'
 import AddUser from './components/AdminDashboard/AddUser.jsx'
 import UpdateUser from './components/AdminDashboard/UpdateUser.jsx'
 
-<<<<<<< HEAD
-//user manager section
-import AdminDash from './components/User_Manager/admin_dash.jsx'
-
-=======
->>>>>>> master
 
 const router = createBrowserRouter([
   {
@@ -55,16 +49,11 @@ const router = createBrowserRouter([
   {
     path: 'admin',
     element: <AdminLogin />
-<<<<<<< HEAD
-<<<<<<< HEAD
   },
   //user manager section
   {
     path: 'admin_dashboard',
     element: <AdminDash />
-=======
->>>>>>> master
-=======
   },
   {
     path: 'a-dash',
@@ -87,7 +76,6 @@ const router = createBrowserRouter([
         element: <UpdateUser />
       }
     ]
->>>>>>> 4b251568305d68b2d85069a363c8ba24ed9a347b
   }
 ])
 
