@@ -14,7 +14,11 @@ export const registerUser = async (req,res) => {
       try {
         let userExists = await User.findOne({ email });
         if (userExists) return res.status(200).json({ success: false, message: "User already exists!" });
-    
+        
+        if (phone.length == 10) {
+          return res.status(200).json({ success: false, message: "Phone number contain 10 numbers!" });
+        }
+
         if (password.length < 8) {
           return res.status(200).json({ success: false, message: "Please enter at least 8 characters as password!" });
         }

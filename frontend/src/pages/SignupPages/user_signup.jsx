@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import "../../css/SignupPages/user_signup.css";
 import logo from "../../assets/Graphics/logo.png"
-<<<<<<< HEAD
-=======
-import farm from "../../assets/images/graphics/farm.jpg"
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
->>>>>>> 89beab4ae33843485ba2a6e8f8d9721bab79059a
 
 function user_signup() {
   const navigate = useNavigate();
