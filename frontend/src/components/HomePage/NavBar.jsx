@@ -48,8 +48,8 @@ function NavBar() {
                 {isLoggedIn ? (
                     <>
                         <div className="nav-c">
-                            <h1>Hi! <Link to="/cus-dash" className='white'>{userName}</Link></h1>
-                            <button className='log-in' onClick={logout} type="submit">Log Out</button>
+                            <h3>Hi ! <Link to="/cus-dash" className='white'>{userName}</Link></h3>
+                            <button className='log-out' onClick={logout} type="submit">Log Out</button>
                         </div>
                         
                     </>

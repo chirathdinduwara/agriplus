@@ -37,6 +37,17 @@
     font-family: "Outfit", serif;
 }
 
+.log-out {
+    background-color: rgba(231, 46, 17, 0.86);
+    width: 100px;
+    height: 40px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: "Outfit", serif;
+}
+
 .log-in:hover {
     animation: ease-out 1ms;
     background-color: rgba(50, 214, 121, 0.697);
@@ -70,6 +81,8 @@
 }
 
 .nav-c {
+    pointer-events: none;
+    align-items: center;
     display: flex;
     gap: 20px;
     color: white;
