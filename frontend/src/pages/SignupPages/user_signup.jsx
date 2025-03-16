@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../css/SignupPages/user_signup.css";
 import logo from "../../assets/Graphics/logo.png"
-import farm from "../../assets/images/graphics/farm.jpg"
 
 function user_signup() {
   const [formData, setFormData] = useState({
@@ -26,8 +25,6 @@ function user_signup() {
       <div id="farmer-signup-container">
         <div id="left-section">
           <img src={logo} alt="Farm Logo" id="logo" />
-          {/* <h2>Welcome to Agriplus</h2>
-          <p>Join our platform to grow your farm business!</p> */}
         </div>
 
         <div id="right-section">
