@@ -2,24 +2,43 @@ import React, { useState } from "react";
 import "../../css/SignupPages/user_signup.css";
 import logo from "../../assets/Graphics/logo.png"
 import farm from "../../assets/images/graphics/farm.jpg"
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 function user_signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
-    full_name: "",
-    address: "",
-    phone: "",
-    password: "",
+      full_name: '',
+      email: '',
+      phone: '',
+      address: '',
+      password: ''
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Farmer Registered:", formData);
+    try {
+        const response = await axios.post("http://localhost:5000/api/sign-up", formData);
+        console.log(response);
+        if (response.data.success) {
+            toast.success("Account Created successful!");
+            setTimeout(() => {
+                navigate("/login");
+            }, 1000);
+        } else {
+            toast.error(response.data.message || "Error in User Creation");
+        }
+    } catch (error) {
+        console.error(error);  // Log the error for debugging
+        toast.error("Account creation failed! Please try again.");
+    }
   };
+
 
   return (
     <>
@@ -78,6 +97,7 @@ function user_signup() {
             </button>
           </form>
         </div>
+        <ToastContainer />
       </div>
     </>
   );
