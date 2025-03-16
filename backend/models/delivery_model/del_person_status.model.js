@@ -17,7 +17,7 @@ const statusSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
-}, { timestamps: true }); 
+}, { timestamps: true });
 
 const Delivery_Status = mongoose.model('Delivery_Status', statusSchema);
 export default Delivery_Status;
