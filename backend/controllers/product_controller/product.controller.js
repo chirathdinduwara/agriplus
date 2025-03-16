@@ -19,3 +19,12 @@ export const createProduct = async (req,res) => {
         res.status(500).json({ success: false, message: "Server Error" });
       }
 }
+
+export const allPrds =  async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.status(200).json({ success: true, products });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};

@@ -16,6 +16,10 @@ import AdminDash from './components/AdminDashboard/AdminDash.jsx'
 import ManageUser from './components/AdminDashboard/ManageUser.jsx'
 import AddUser from './components/AdminDashboard/AddUser.jsx'
 import UpdateUser from './components/AdminDashboard/UpdateUser.jsx'
+import StaffDash from './components/StaffDashboard/StaffDash.jsx'
+import StaffDashboard from './pages/Dashboards/StaffDashboard.jsx'
+import ManagePrd from './components/StaffDashboard/ManagePrd.jsx'
+import AddPrd from './components/StaffDashboard/AddPrd.jsx'
 
 
 const router = createBrowserRouter([
@@ -74,6 +78,24 @@ const router = createBrowserRouter([
       {
         path: 'updateUser/:userId',
         element: <UpdateUser />
+      }
+    ]
+  },
+  {
+    path: 's-dash',
+    element: <StaffDashboard />,
+    children: [
+      {
+        index: true,
+        element: <StaffDash />
+      },
+      {
+        path: 'manPrd',
+        element: <ManagePrd />
+      },
+      {
+        path: 'addPrd',
+        element: <AddPrd />
       }
     ]
   }
