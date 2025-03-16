@@ -16,14 +16,11 @@ import AdminDash from './components/AdminDashboard/AdminDash.jsx'
 import ManageUser from './components/AdminDashboard/ManageUser.jsx'
 import AddUser from './components/AdminDashboard/AddUser.jsx'
 import UpdateUser from './components/AdminDashboard/UpdateUser.jsx'
-<<<<<<< HEAD
 import UserSignup from './pages/SignupPages/user_signup.jsx'
-=======
 import StaffDash from './components/StaffDashboard/StaffDash.jsx'
 import StaffDashboard from './pages/Dashboards/StaffDashboard.jsx'
 import ManagePrd from './components/StaffDashboard/ManagePrd.jsx'
 import AddPrd from './components/StaffDashboard/AddPrd.jsx'
->>>>>>> dcf277bc7db8c0089d23bfe6e62ca8c6cc501460
 
 
 const router = createBrowserRouter([
