@@ -39,3 +39,38 @@ export const getPrd = async (req, res) => {
   }
 };
 
+export const removePrd = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Product.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: "Product Deleted" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Delete Failed!" });
+  }
+};
+
+export const updatePrd = async (req, res) => {
+  const { id } = req.params; 
+  const { prd_name, prd_brand, price, stock, cetegory, img_url } = req.body;
+  
+  try {
+    // Find the user by ID and update their details
+    const product = await Product.findByIdAndUpdate(id, {
+      prd_name,
+      prd_brand,
+      price,
+      stock,
+      cetegory,
+      img_url
+    }, { new: true }); 
+
+    if (!product) {
+      return res.status(404).json({ success: false, message: "product not found" });
+    }
+
+    res.status(200).json({ success: true, product });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
