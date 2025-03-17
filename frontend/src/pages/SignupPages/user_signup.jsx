@@ -5,8 +5,10 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function user_signup() {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     full_name: "",
@@ -84,14 +86,24 @@ function user_signup() {
               onChange={handleChange}
               required
             />
-            <input
-              type="password"
-              id="password"
-              placeholder="Create Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Create Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                id="toggle-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </button>
+            </div>
+
             <button type="submit" id="signup-button">
               Register
             </button>

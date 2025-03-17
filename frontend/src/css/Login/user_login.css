@@ -94,3 +94,14 @@ input:focus {
 #login-button:hover {
   background: #388e3c;
 }
+
+#toggle-btnn {
+  position: absolute;
+  margin-bottom: 50px;
+  margin-left: 350px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+}

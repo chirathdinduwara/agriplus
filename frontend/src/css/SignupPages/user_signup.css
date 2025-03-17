@@ -5,7 +5,8 @@
 }
 
 #left-section {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),url(../../assets/images/graphics/farm.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+    url(../../assets/images/graphics/farm.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -83,4 +84,14 @@ input:focus {
 
 #signup-button:hover {
   background: #388e3c;
+}
+
+#toggle-btn {
+  position: absolute;
+  margin-left: 525px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
 }

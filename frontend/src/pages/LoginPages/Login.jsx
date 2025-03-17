@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 
 import logo from "../../assets/Graphics/logo.png";
 import "../../css/Login/user_login.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function UserLogin() {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -71,14 +73,29 @@ function UserLogin() {
             />
             <input
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Create Password"
               value={formData.password}
               onChange={handleChange}
               required
             />
-            
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+              }}
+            >
+              <button
+                type="button"
+                id="toggle-btnn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </button>
+            </div>
+
             <button type="submit" id="login-button">
               Login
             </button>
