@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import "../../css/SignupPages/user_signup.css";
-import logo from "../../assets/Graphics/logo.png"
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import logo from "../../assets/Graphics/logo.png";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function user_signup() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-      full_name: '',
-      email: '',
-      phone: '',
-      address: '',
-      password: ''
+    full_name: "",
+    email: "",
+    phone: "",
+    address: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -22,22 +23,24 @@ function user_signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post("http://localhost:5000/api/sign-up", formData);
-        console.log(response);
-        if (response.data.success) {
-            toast.success("Account Created successful!");
-            setTimeout(() => {
-                navigate("/login");
-            }, 1000);
-        } else {
-            toast.error(response.data.message || "Error in User Creation");
-        }
+      const response = await axios.post(
+        "http://localhost:5000/api/sign-up",
+        formData
+      );
+      console.log(response);
+      if (response.data.success) {
+        toast.success("Account Created successful!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
+        toast.error(response.data.message || "Error in User Creation");
+      }
     } catch (error) {
-        console.error(error);  // Log the error for debugging
-        toast.error("Account creation failed! Please try again.");
+      console.error(error); // Log the error for debugging
+      toast.error("Account creation failed! Please try again.");
     }
   };
-
 
   return (
     <>
@@ -90,8 +93,15 @@ function user_signup() {
               required
             />
             <button type="submit" id="signup-button">
-              Register Farmer
+              Register
             </button>
+
+            <p id="login-p">
+              Already have an account :{" "}
+              <Link to="/login" id="p-link">
+                Login Here{" "}
+              </Link>
+            </p>
           </form>
         </div>
         <ToastContainer />

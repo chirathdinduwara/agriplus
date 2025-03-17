@@ -1,71 +1,97 @@
-import {Link, useNavigate} from 'react-router-dom'
-import '../../css/HomePage/navbar.css'
-import logo from "../../assets/Graphics/logo.png"
-import { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import "../../css/HomePage/navbar.css";
+import logo from "../../assets/Graphics/logo.png";
+import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 
 function NavBar() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userName, setUserName] = useState("");
-    
-    const logout = () => {
-        localStorage.removeItem("token");
-        window.location.reload();
-    };
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
 
-    function handleLogIn() {
-        navigate('/login');
+  function handleLogIn() {
+    navigate("/login");
+  }
+
+  function handleSignUp() {
+    navigate("/sign_up");
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true); // User is logged in
+
+      const decodedToken = jwtDecode(token);
+      setUserName(decodedToken.name);
+    } else {
+      setIsLoggedIn(false); // User is not logged in
     }
+  }, []);
 
-    useEffect(() => {
-        const token = localStorage.getItem('token'); 
-        if (token) {
-            setIsLoggedIn(true); // User is logged in
-            
-            const decodedToken = jwtDecode(token);
-            setUserName(decodedToken.name); 
-        } else {
-            setIsLoggedIn(false); // User is not logged in
-        }
-    }, []);
-
-
-    return (
-        <>
-            <nav className="home-nav">
-                <img src={logo} alt="logo" className="logo" />
-                <ul>
-                    <li><Link to='/' className='nav-link'>Home</Link></li>
-                    <li><Link to='/store' className='nav-link'>Shop</Link></li>
-                    <li><Link to='/about' className='nav-link'>About</Link></li>
-                    <li><Link to='/contact' className='nav-link'>Contacts</Link></li>
-                   
-                </ul>
-                <div>
-                {isLoggedIn ? (
-                    <>
-                        <div className="nav-c">
-                            <h3>Hi ! <Link to="/cus-dash" className='white'>{userName}</Link></h3>
-                            <button className='log-out' onClick={logout} type="submit">Log Out</button>
-                        </div>
-                        
-                    </>
-                    ) : (
-                        <>
-                            <div className="nav-actions">
-                                <button className="log-in" onClick={handleLogIn}>Log In</button>
-                                <button className="log-in">Sign Up</button>
-                            </div>
-                        </>
-                )}
-                </div>
-
-            </nav>
-        </>
-    );
+  return (
+    <>
+      <nav className="home-nav">
+        <img src={logo} alt="logo" className="logo" />
+        <ul>
+          <li>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/store" className="nav-link">
+              Shop
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="nav-link">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className="nav-link">
+              Contacts
+            </Link>
+          </li>
+        </ul>
+        <div>
+          {isLoggedIn ? (
+            <>
+              <div className="nav-c">
+                <h3>
+                  Hi !{" "}
+                  <Link to="/cus-dash" className="white">
+                    {userName}
+                  </Link>
+                </h3>
+                <button className="log-out" onClick={logout} type="submit">
+                  Log Out
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="nav-actions">
+                <button className="log-in" onClick={handleLogIn}>
+                  Log In
+                </button>
+                <button className="log-in" onClick={handleSignUp}>
+                  Sign Up
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </nav>
+    </>
+  );
 }
 
 export default NavBar;
