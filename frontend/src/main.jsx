@@ -1,31 +1,31 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import { createBrowserRouter ,RouterProvider } from 'react-router-dom'
 
-import Error from "./components/Error/err_404_page.jsx";
-import Home from "./components/HomePage/Home.jsx";
-import Contact from "./pages/Contact.jsx";
-import About from "./pages/About.jsx";
-import Store from "./pages/Store.jsx";
-import Login from "./pages/LoginPages/Login.jsx";
-import AdminLogin from "./pages/LoginPages/AdminLogin.jsx";
-import AdminDashboard from "./pages/Dashboards/AdminDashboard.jsx";
-import AdminDash from "./components/AdminDashboard/AdminDash.jsx";
-import ManageUser from "./components/AdminDashboard/ManageUser.jsx";
-import AddUser from "./components/AdminDashboard/AddUser.jsx";
-import UpdateUser from "./components/AdminDashboard/UpdateUser.jsx";
-import UserSignup from "./pages/SignupPages/user_signup.jsx";
-import StaffDash from "./components/StaffDashboard/StaffDash.jsx";
-import StaffDashboard from "./pages/Dashboards/StaffDashboard.jsx";
-import ManagePrd from "./components/StaffDashboard/ManagePrd.jsx";
-import AddPrd from "./components/StaffDashboard/AddPrd.jsx";
-import UpdatePrd from "./components/StaffDashboard/UpdatePrd.jsx";
-import Product from "./components/HomePage/Product.jsx";
-import UserProfile from "./components/User_Manager/UserProfile.jsx";
-import UserDashboard from "./components/User_Manager/UserDashboard.jsx";
-import SmartFarming from "./components/User_Manager/SmartFarming.jsx";
+import Error from './components/Error/err_404_page.jsx'
+import Home from './components/HomePage/Home.jsx'
+import Contact from './pages/Contact.jsx'
+import About from './pages/About.jsx'
+import Store from './pages/Store.jsx'
+import Login from './pages/LoginPages/Login.jsx'
+import AdminLogin from './pages/LoginPages/AdminLogin.jsx'
+import AdminDashboard from './pages/Dashboards/AdminDashboard.jsx'
+import AdminDash from './components/AdminDashboard/AdminDash.jsx'
+import ManageUser from './components/AdminDashboard/ManageUser.jsx'
+import AddUser from './components/AdminDashboard/AddUser.jsx'
+import UpdateUser from './components/AdminDashboard/UpdateUser.jsx'
+import UserSignup from './pages/SignupPages/user_signup.jsx'
+import StaffDash from './components/StaffDashboard/StaffDash.jsx'
+import StaffDashboard from './pages/Dashboards/StaffDashboard.jsx'
+import ManagePrd from './components/StaffDashboard/ManagePrd.jsx'
+import AddPrd from './components/StaffDashboard/AddPrd.jsx'
+import UpdatePrd from './components/StaffDashboard/UpdatePrd.jsx'
+import Product from './components/HomePage/Product.jsx'
+import UserProfile from './components/User_Manager/UserProfile.jsx'
+import UserDashboard from './components/User_Manager/UserDashboard.jsx'
+import SmartFarming from './components/User_Manager/SmartFarming.jsx'
 import Order from "./components/HomePage/Order_process.jsx";
 
 const router = createBrowserRouter([
@@ -51,10 +51,14 @@ const router = createBrowserRouter([
         element: <Store />,
       },
       {
-        path:"/product/:id",
-        element: <Product />
-      }
-    ]
+        path: "/product/:id",
+        element: <Product />,
+      },
+      {
+        path: "order/:id",
+        element: <Order />,
+      },
+    ],
   },
   {
     path: 'profile',
@@ -73,24 +77,6 @@ const router = createBrowserRouter([
   {
     path: 'login',
     element: <Login />
-  },
-  {
-    path: "profile",
-    element: <UserProfile />,
-    children: [
-      {
-        index: true,
-        element: <UserDashboard />,
-      },
-      {
-        path: "SmartAssit",
-        element: <SmartFarming />,
-      },
-    ],
-  },
-  {
-    path: "login",
-    element: <Login />,
   },
   {
     path: "admin",
@@ -156,4 +142,3 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
-
