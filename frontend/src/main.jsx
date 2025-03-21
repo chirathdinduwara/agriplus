@@ -21,6 +21,7 @@ import StaffDash from './components/StaffDashboard/StaffDash.jsx'
 import StaffDashboard from './pages/Dashboards/StaffDashboard.jsx'
 import ManagePrd from './components/StaffDashboard/ManagePrd.jsx'
 import AddPrd from './components/StaffDashboard/AddPrd.jsx'
+import UpdatePrd from './components/StaffDashboard/UpdatePrd.jsx'
 
 
 const router = createBrowserRouter([
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: 'addPrd',
         element: <AddPrd />
+      },
+      {
+        path: 'updateProduct/:prdId',
+        element: <UpdatePrd />
       }
     ]
   }

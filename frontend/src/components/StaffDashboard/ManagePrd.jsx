@@ -58,15 +58,18 @@ function ManagePrd() {
                             <td>Price</td>
                             <td>Stock</td>
                             <td>Category</td>
+                            <td>Image</td>
                             <td>Actions</td>
                         </thead>
                         <tbody>
                         {products.map((product) => (
-                            <tr key={product.prd_name}>
+                            <tr key={product._id}>
+                                <td>{product.prd_name}</td>
                                 <td>{product.prd_brand}</td>
                                 <td>{product.price}</td>
                                 <td>{product.stock}</td>
                                 <td>{product.cetegory}</td>
+                                <td> <img src={product.img_url} width={50} /> </td>
                                 <td>
                                     <button className="update-btn" onClick={() => handleUpdateProduct(product._id)}>Update</button>
                                     <button className="delete-btn" onClick={() => handleDelete(product._id)}>Delete</button>
