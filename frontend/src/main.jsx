@@ -24,6 +24,8 @@ import AddPrd from './components/StaffDashboard/AddPrd.jsx'
 import UpdatePrd from './components/StaffDashboard/UpdatePrd.jsx'
 import Product from './components/HomePage/Product.jsx'
 import UserProfile from './components/User_Manager/UserProfile.jsx'
+import UserDashboard from './components/User_Manager/UserDashboard.jsx'
+import SmartFarming from './components/User_Manager/SmartFarming.jsx'
 
 
 const router = createBrowserRouter([
@@ -56,7 +58,17 @@ const router = createBrowserRouter([
   },
   {
     path: 'profile',
-    element: <UserProfile />
+    element: <UserProfile />,
+    children: [
+      {
+        index: true,
+        element: <UserDashboard />
+      },
+      {
+        path: 'SmartAssit',
+        element: <SmartFarming />
+      }
+    ]
   },
   {
     path: 'login',
