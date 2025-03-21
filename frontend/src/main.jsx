@@ -23,6 +23,9 @@ import ManagePrd from "./components/StaffDashboard/ManagePrd.jsx";
 import AddPrd from "./components/StaffDashboard/AddPrd.jsx";
 import UpdatePrd from "./components/StaffDashboard/UpdatePrd.jsx";
 import Product from "./components/HomePage/Product.jsx";
+import UserProfile from "./components/User_Manager/UserProfile.jsx";
+import UserDashboard from "./components/User_Manager/UserDashboard.jsx";
+import SmartFarming from "./components/User_Manager/SmartFarming.jsx";
 import Order from "./components/HomePage/Order_process.jsx";
 
 const router = createBrowserRouter([
@@ -72,6 +75,20 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
+    path: "profile",
+    element: <UserProfile />,
+    children: [
+      {
+        index: true,
+        element: <UserDashboard />,
+      },
+      {
+        path: "SmartAssit",
+        element: <SmartFarming />,
+      },
+    ],
+  },
+  {
     path: "login",
     element: <Login />,
   },
@@ -79,7 +96,7 @@ const router = createBrowserRouter([
     path: "admin",
     element: <AdminLogin />,
   },
-  //user manager section
+  // user manager section
   {
     path: "admin_dashboard",
     element: <AdminDash />,
