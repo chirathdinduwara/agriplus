@@ -22,6 +22,9 @@ function NavBar() {
   function handleSignUp() {
     navigate("/sign_up");
   }
+  function goHome() {
+    navigate("/");
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -38,7 +41,7 @@ function NavBar() {
   return (
     <>
       <nav className="home-nav">
-        <img src={logo} alt="logo" className="logo" />
+        <img onClick={goHome} src={logo} style={{ cursor: "pointer" }} alt="logo" className="logo" />
         <ul>
           <li>
             <Link to="/" className="nav-link">
