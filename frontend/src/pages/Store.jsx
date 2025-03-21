@@ -24,6 +24,10 @@ function Store() {
         fetchProducts();
     }, []); 
 
+    const handleItemClick = (product) => {
+        navigate(`/product/${product._id}`, { state: product });
+    };
+
     return (
         <>
             <div className="store">
@@ -47,8 +51,11 @@ function Store() {
                     </div>
                     <div className="store-items">
                         {products.map((product) => (
-                            <StoreItem key={product._id} id={product._id} prd_name={product.prd_name} price={product.price} img_url={product.img_url} category={product.category} />
+                            <div id={product._id} onClick={() => handleItemClick(product)}  style={{ cursor: "pointer" }}>
+                                <StoreItem  prd_name={product.prd_name} price={product.price} img_url={product.img_url} stock={product.stock} prd_brand={product.prd_brand}  category={product.category} />
+                            </div>
                         ))}
+                        
                     </div>
                 </div>
             </div>
