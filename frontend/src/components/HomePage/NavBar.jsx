@@ -25,6 +25,9 @@ function NavBar() {
   function goHome() {
     navigate("/");
   }
+  const goProfile = () => {
+    navigate("/profile");
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -68,11 +71,10 @@ function NavBar() {
           {isLoggedIn ? (
             <>
               <div className="nav-c">
-                <h3>
-                  Hi !{" "}
-                  <Link to="/cus-dash" className="white">
-                    {userName}
-                  </Link>
+                <h3 onClick={() => goProfile()} style={{ cursor: "pointer" }}>
+
+                  Hi !{" " + userName}
+
                 </h3>
                 <button className="log-out" onClick={logout} type="submit">
                   Log Out

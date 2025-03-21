@@ -90,7 +90,7 @@
 }
 
 .nav-c h3 {
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .white {
