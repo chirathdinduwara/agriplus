@@ -51,14 +51,28 @@ const router = createBrowserRouter([
         element: <Store />,
       },
       {
-        path: "/product/:id",
-        element: <Product />,
+        path:"/product/:id",
+        element: <Product />
+      }
+    ]
+  },
+  {
+    path: 'profile',
+    element: <UserProfile />,
+    children: [
+      {
+        index: true,
+        element: <UserDashboard />
       },
       {
-        path: "order/:id",
-        element: <Order />,
-      },
-    ],
+        path: 'SmartAssit',
+        element: <SmartFarming />
+      }
+    ]
+  },
+  {
+    path: 'login',
+    element: <Login />
   },
   {
     path: "profile",
