@@ -23,6 +23,7 @@ import ManagePrd from './components/StaffDashboard/ManagePrd.jsx'
 import AddPrd from './components/StaffDashboard/AddPrd.jsx'
 import UpdatePrd from './components/StaffDashboard/UpdatePrd.jsx'
 import Product from './components/HomePage/Product.jsx'
+import UserProfile from './components/User_Manager/UserProfile.jsx'
 
 
 const router = createBrowserRouter([
@@ -52,7 +53,11 @@ const router = createBrowserRouter([
         element: <Product />
       }
     ]
-  }, 
+  },
+  {
+    path: 'profile',
+    element: <UserProfile />
+  },
   {
     path: 'login',
     element: <Login />
