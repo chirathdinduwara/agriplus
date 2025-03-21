@@ -1,9 +1,10 @@
-import express from 'express';
+import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/user_route/auth.routes.js";
 import productRoutes from "./routes/product_route/product.routes.js";
+import orderRoutes from "./routes/order_route/order.route.js";
 
 dotenv.config();
 
@@ -14,10 +15,11 @@ app.use(express.json());
 // Routes
 app.use("/api", authRoutes);
 app.use("/api", productRoutes);
+app.use("/api", orderRoutes);
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    connectDB();
-    console.log(`Server is running on http://localhost:${PORT}`);
+  connectDB();
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

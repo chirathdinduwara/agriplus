@@ -1,123 +1,127 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { createBrowserRouter ,RouterProvider } from 'react-router-dom'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Error from './components/Error/err_404_page.jsx'
-import Home from './components/HomePage/Home.jsx'
-import Contact from './pages/Contact.jsx'
-import About from './pages/About.jsx'
-import Store from './pages/Store.jsx'
-import Login from './pages/LoginPages/Login.jsx'
-import AdminLogin from './pages/LoginPages/AdminLogin.jsx'
-import AdminDashboard from './pages/Dashboards/AdminDashboard.jsx'
-import AdminDash from './components/AdminDashboard/AdminDash.jsx'
-import ManageUser from './components/AdminDashboard/ManageUser.jsx'
-import AddUser from './components/AdminDashboard/AddUser.jsx'
-import UpdateUser from './components/AdminDashboard/UpdateUser.jsx'
-import UserSignup from './pages/SignupPages/user_signup.jsx'
-import StaffDash from './components/StaffDashboard/StaffDash.jsx'
-import StaffDashboard from './pages/Dashboards/StaffDashboard.jsx'
-import ManagePrd from './components/StaffDashboard/ManagePrd.jsx'
-import AddPrd from './components/StaffDashboard/AddPrd.jsx'
-import UpdatePrd from './components/StaffDashboard/UpdatePrd.jsx'
-import Product from './components/HomePage/Product.jsx'
-
+import Error from "./components/Error/err_404_page.jsx";
+import Home from "./components/HomePage/Home.jsx";
+import Contact from "./pages/Contact.jsx";
+import About from "./pages/About.jsx";
+import Store from "./pages/Store.jsx";
+import Login from "./pages/LoginPages/Login.jsx";
+import AdminLogin from "./pages/LoginPages/AdminLogin.jsx";
+import AdminDashboard from "./pages/Dashboards/AdminDashboard.jsx";
+import AdminDash from "./components/AdminDashboard/AdminDash.jsx";
+import ManageUser from "./components/AdminDashboard/ManageUser.jsx";
+import AddUser from "./components/AdminDashboard/AddUser.jsx";
+import UpdateUser from "./components/AdminDashboard/UpdateUser.jsx";
+import UserSignup from "./pages/SignupPages/user_signup.jsx";
+import StaffDash from "./components/StaffDashboard/StaffDash.jsx";
+import StaffDashboard from "./pages/Dashboards/StaffDashboard.jsx";
+import ManagePrd from "./components/StaffDashboard/ManagePrd.jsx";
+import AddPrd from "./components/StaffDashboard/AddPrd.jsx";
+import UpdatePrd from "./components/StaffDashboard/UpdatePrd.jsx";
+import Product from "./components/HomePage/Product.jsx";
+import Order from "./components/HomePage/Order_process.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
-    errorElement: <Error/>,
+    errorElement: <Error />,
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
       {
-        path: 'contact',
-        element: <Contact />
+        path: "contact",
+        element: <Contact />,
       },
       {
-        path: 'about',
+        path: "about",
         element: <About />,
       },
       {
-        path: 'store',
-        element: <Store />
+        path: "store",
+        element: <Store />,
       },
       {
-        path:"/product/:id",
-        element: <Product />
-      }
-    ]
-  }, 
-  {
-    path: 'login',
-    element: <Login />
+        path: "/product/:id",
+        element: <Product />,
+      },
+      {
+        path: "order/:id",
+        element: <Order />,
+      },
+    ],
   },
   {
-    path: 'admin',
-    element: <AdminLogin />
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "admin",
+    element: <AdminLogin />,
   },
   //user manager section
   {
-    path: 'admin_dashboard',
-    element: <AdminDash />
+    path: "admin_dashboard",
+    element: <AdminDash />,
   },
   {
-    path: 'sign_up',
-    element: <UserSignup/>
+    path: "sign_up",
+    element: <UserSignup />,
   },
   {
-    path: 'a-dash',
+    path: "a-dash",
     element: <AdminDashboard />,
     children: [
       {
         index: true,
-        element: <AdminDash />
+        element: <AdminDash />,
       },
       {
-        path: 'manUser',
-        element: <ManageUser />
+        path: "manUser",
+        element: <ManageUser />,
       },
       {
-        path: 'addUser',
-        element: <AddUser />
+        path: "addUser",
+        element: <AddUser />,
       },
       {
-        path: 'updateUser/:userId',
-        element: <UpdateUser />
-      }
-    ]
+        path: "updateUser/:userId",
+        element: <UpdateUser />,
+      },
+    ],
   },
   {
-    path: 's-dash',
+    path: "s-dash",
     element: <StaffDashboard />,
     children: [
       {
         index: true,
-        element: <StaffDash />
+        element: <StaffDash />,
       },
       {
-        path: 'manPrd',
-        element: <ManagePrd />
+        path: "manPrd",
+        element: <ManagePrd />,
       },
       {
-        path: 'addPrd',
-        element: <AddPrd />
+        path: "addPrd",
+        element: <AddPrd />,
       },
       {
-        path: 'updateProduct/:prdId',
-        element: <UpdatePrd />
-      }
-    ]
-  }
-])
+        path: "updateProduct/:prdId",
+        element: <UpdatePrd />,
+      },
+    ],
+  },
+]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-     <RouterProvider router={router} /> 
-  </StrictMode>,
-)
+    <RouterProvider router={router} />
+  </StrictMode>
+);
