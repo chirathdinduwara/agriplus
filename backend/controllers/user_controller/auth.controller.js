@@ -83,19 +83,22 @@ export const removeUser = async (req, res) => {
   }
 };
 
+
 export const updateUser = async (req, res) => {
-  const { id } = req.params; 
-  const { full_name, email, address, phone, password } = req.body; 
-  
+  const { id } = req.params;
+  const { full_name, email, address, phone, password } = req.body;
+
   try {
-    // Find the user by ID and update their details
-    const user = await User.findByIdAndUpdate(id, {
-      full_name,
-      email,
-      address,
-      phone,
-      password
-    }, { new: true }); 
+    let updatedData = { full_name, email, address, phone };
+
+    // Hash the password only if it's provided
+    if (password) {
+      const salt = await bcrypt.genSalt(10); // Generate salt
+      updatedData.password = await bcrypt.hash(password, salt); // Hash password
+    }
+
+    // Update user data
+    const user = await User.findByIdAndUpdate(id, updatedData, { new: true });
 
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });

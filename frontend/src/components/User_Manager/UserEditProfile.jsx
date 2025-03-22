@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function UserDashboard() {
+function UserEditProfile() {
     const navigate = useNavigate();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -84,4 +84,4 @@ function UserDashboard() {
     );
 }
 
-export default UserDashboard;
+export default UserEditProfile;

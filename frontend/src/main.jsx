@@ -71,6 +71,9 @@ const router = createBrowserRouter([
       {
         path: 'SmartAssit',
         element: <SmartFarming />
+      },
+      {
+        
       }
     ]
   },
