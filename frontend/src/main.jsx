@@ -27,6 +27,8 @@ import UserProfile from './components/User_Manager/UserProfile.jsx'
 import UserDashboard from './components/User_Manager/UserDashboard.jsx'
 import SmartFarming from './components/User_Manager/SmartFarming.jsx'
 import Order from "./components/HomePage/Order_process.jsx";
+import AddFarmingDetails from './components/SpecialFunction/AddFarmingDetails.jsx'
+import SmartAssist from './components/SpecialFunction/SmartAssist.jsx'
 
 const router = createBrowserRouter([
   {
@@ -69,9 +71,14 @@ const router = createBrowserRouter([
         element: <SmartFarming />
       },
       {
-        
+        path: 'addDetails',
+        element: <AddFarmingDetails />
       }
     ]
+  },
+  {
+    path: 'assist/:id',
+    element: <SmartAssist />
   },
   {
     path: 'login',
