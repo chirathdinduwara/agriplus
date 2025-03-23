@@ -7,6 +7,8 @@ import { useLocation } from "react-router-dom";
 import "../../css/HomePage/Order_process.css";
 import "../../css/HomePage/product.css";
 import Delivery from "../../assets/images/graphics/delivery.jpg";
+import { ToastContainer, toast } from "react-toastify";
+import { FaSave } from "react-icons/fa";
 
 export default function OrderProcess() {
   const location = useLocation();
@@ -84,8 +86,10 @@ export default function OrderProcess() {
       });
 
       const data = await response.json();
-      alert(data.message || "Order Confirmed!");
-      navigate("/");
+      toast.success("Order Confirmed ! ");
+      setTimeout(() => {
+        navigate("/");
+      }, 2300);
     } catch (error) {
       console.error("Error:", error);
       alert("Error placing the order.");
@@ -99,6 +103,49 @@ export default function OrderProcess() {
       setStep(3);
     } else {
       setStep(2);
+    }
+  };
+
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const errors = {};
+    const cardRegex = /^[0-9]{16}$/; // Simple validation for 16-digit card number
+    const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY format
+    const cvvRegex = /^[0-9]{3}$/; // 3-digit CVV
+
+    if (!cardRegex.test(cardNumber)) {
+      errors.cardNumber = "Card number must be 16 digits.";
+    }
+
+    if (!expiryRegex.test(expiryDate)) {
+      errors.expiryDate = "Expiry date must be in MM/YY format.";
+    }
+
+    if (!cvvRegex.test(cvv)) {
+      errors.cvv = "CVV must be 3 digits.";
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0; // Returns true if no errors
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      toast.success("Card Details Saved.", {
+        autoClose: 1500, // Time in milliseconds before the toast auto closes
+        hideProgressBar: true, // Show progress bar
+        closeButton: true, // Show close button
+        pauseOnHover: true, // Pause the toast when hovered
+        draggable: true, // Allow dragging of the toast
+        className: "toast-custom-success", // Custom class for the toast message
+        bodyClassName: "toast-body-custom", // Custom body class for the toast
+      });
+      console.log("Form submitted");
     }
   };
 
@@ -155,11 +202,35 @@ export default function OrderProcess() {
           )}
 
           {step === 2 && paymentType === "card" && (
-            <div>
-              <input type="text" placeholder="Card Number" />
-              <input type="text" placeholder="Expiry Date (MM/YY)" />
-              <input type="text" placeholder="CVV" />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Card Number"
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+              />
+              {errors.cardNumber && <p>{errors.cardNumber}</p>}
+
+              <input
+                type="text"
+                placeholder="Expiry Date (MM/YY)"
+                value={expiryDate}
+                onChange={(e) => setExpiryDate(e.target.value)}
+              />
+              {errors.expiryDate && <p>{errors.expiryDate}</p>}
+
+              <input
+                type="text"
+                placeholder="CVV"
+                value={cvv}
+                onChange={(e) => setCvv(e.target.value)}
+              />
+              {errors.cvv && <p>{errors.cvv}</p>}
+
+              <button id="save-button">
+                <FaSave id="icon" /> Save
+              </button>
+            </form>
           )}
 
           {step === 3 && (paymentType === "card" || paymentType === "cash") && (
@@ -223,6 +294,7 @@ export default function OrderProcess() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
