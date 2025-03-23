@@ -7,6 +7,7 @@ function SmartFarming() {
         <>
             <div className="smart-farming">
                 <h1 className="smart-heading">Smart Farming Assistance</h1>
+                <button className="add">Add</button>
                 
             </div>
         </>
