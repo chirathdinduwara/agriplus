@@ -25,7 +25,7 @@ function Store() {
     }, []); 
 
     const handleItemClick = (product) => {
-        navigate(`/product/${product._id}`, { state: product });
+        navigate(`/order/${product._id}`, { state: product });
     };
 
     return (
