@@ -1,6 +1,7 @@
 import FarmingDetails from '../../models/special_function_model/farmingDetails.model.js';
 import dotenv from "dotenv";
 import axios from 'axios';
+import FarmingTasks from '../../models/special_function_model/Tasks.model.js';
 dotenv.config();
 
 const API_KEY = process.env.API_KEY;
@@ -75,6 +76,7 @@ export const updateDetail = async (req, res) => {
   }
 };
 
+//Weather
 export const getWeather = async (req, res) => {
   const { city } = req.params;
 
@@ -98,5 +100,48 @@ export const getWeather = async (req, res) => {
       error: "Error fetching weather data",
       message: error.message
     });
+  }
+};
+
+//FarmerTasks
+export const createTasks = async (req,res) => {
+  const { crop_name, season, location, state, tasks} = req.body;
+
+  if (!crop_name || !season || !location || !state || !tasks) {
+      return res.status(400).json({ success: false, message: "Please Provide All Fields" });
+    }
+  
+    try {
+      
+      const newDetails = new FarmingTasks({ crop_name, season, location, state, tasks});
+  
+      await newDetails.save();
+      res.status(201).json({ success: true, message: "Details added successfully" });
+  
+    } catch (err) {
+      console.error("Error:", err.message);
+      res.status(500).json({ success: false, message: "Server Error" });
+    }
+}
+
+export const getTask = async (req, res) => {
+  const { crop_name, location } = req.query;
+
+  console.log("Received Crop Name:", crop_name);
+  console.log("Received Location:", location);
+
+  try {
+    const detail = await FarmingTasks.findOne({
+      crop_name: crop_name,
+      location: location,
+    });
+
+    if (!detail) {
+      return res.status(404).json({ success: false, message: "No farming details found for this crop and location." });
+    }
+
+    res.status(200).json({ success: true, tasks: detail.tasks });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error", error: err.message });
   }
 };

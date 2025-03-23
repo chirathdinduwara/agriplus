@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../../css/HomePage/userProfile.css';
-import { GoChevronRight, GoPerson, GoCodeOfConduct, GoPackage, GoPersonFill, GoReply   } from "react-icons/go";
+import { GoChevronRight, GoPerson, GoCodeOfConduct, GoPackage, GoPersonFill, GoReply,GoHome    } from "react-icons/go";
 import logo from "../../assets/Graphics/logo.png";
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
@@ -72,6 +72,10 @@ function UserNav() {
                         <Link className="list_none" to='TrackOrders'><GoChevronRight /></Link> 
                     </li>
                     <li className="nav-list-item">
+                        <Link className="list_none" to='/'> <GoHome  size={30}/>Back Home</Link>
+                        <Link className="list_none" to='/'><GoChevronRight /></Link> 
+                    </li>
+                    <li className="nav-list-item" style={{cursor: 'pointer'}}>
                         <div className="list_none" onClick={logout} > <GoReply size={30}/>Log Out</div>
                     </li>
                     <li className="nav-list-item">

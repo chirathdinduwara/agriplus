@@ -33,7 +33,7 @@
 .weather-item {
     display: flex;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #93d489;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
