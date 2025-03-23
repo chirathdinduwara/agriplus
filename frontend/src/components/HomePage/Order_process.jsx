@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import "../../css/HomePage/Order_process.css";
@@ -16,6 +19,40 @@ export default function OrderProcess() {
 
   const nextStep = () => step < 3 && setStep(step + 1);
   const prevStep = () => step > 1 && setStep(step - 1);
+  const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true); // User is logged in
+
+      const decodedToken = jwtDecode(token);
+      setUserId(decodedToken.id);
+    } else {
+      setIsLoggedIn(false); // User is not logged in
+    }
+  }, []);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/user/${userId}`
+        );
+        setUser(response.data.user);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      }
+    }
+
+    if (userId) {
+      fetchUsers();
+    }
+  }, [userId]);
 
   const handleQuantityChange = (e) => {
     const newQuantity = Number(e.target.value);
@@ -24,8 +61,35 @@ export default function OrderProcess() {
     }
   };
 
-  const handleConfirmOrder = () => {
-    alert("Order Confirmed!");
+  const handleConfirmOrder = async () => {
+    const orderDetails = {
+      name: user.full_name, // User's name from the logged-in session
+      Shipping_addrs: user.address, // User's address from the session
+      prd_name: product.prd_name,
+      prd_brand: product.prd_brand,
+      item_price: product.price,
+      cetegory: product.cetegory,
+      quantity: quantity,
+      tot_price: totalPrice,
+      payment_type: paymentType,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/add_order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderDetails),
+      });
+
+      const data = await response.json();
+      alert(data.message || "Order Confirmed!");
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error placing the order.");
+    }
   };
 
   const handlePaymentTypeChange = (e) => {
@@ -51,14 +115,22 @@ export default function OrderProcess() {
           {step === 1 && (
             <div>
               <p id="p_addr">Name</p>
-              <input name="name" id="q_input" type="text" />
+              <input
+                name="name"
+                id="q_input"
+                value={user.full_name || ""}
+                type="text"
+                disabled
+              />
               <br />
               <br />
               <p id="p_addr">Shipping Address</p>
               <textarea
                 name="shipping_addr"
                 id="shipping_addr"
+                value={user.address || ""}
                 maxLength={200}
+                onChange={(e) => setUser({ ...user, address: e.target.value })}
               ></textarea>
               <p id="p_qty">Item Quantity</p>
               <input
@@ -132,7 +204,7 @@ export default function OrderProcess() {
                 <strong>Item Brand:</strong> {product.prd_brand}
               </p>
               <p id="p_details">
-                <strong>Category:</strong> {product.category}
+                <strong>Category:</strong> {product.cetegory}
               </p>
               <p id="p_details">
                 <strong>Stock:</strong> {product.stock}

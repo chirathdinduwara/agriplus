@@ -2,6 +2,14 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true,
+    },
+    Shipping_addrs: {
+      type: String,
+      required: true,
+    },
     prd_name: {
       type: String,
       required: true,
