@@ -31,21 +31,32 @@ const WeatherDetails = () => {
     return (
         <div className="assist">
             <div className="assist-container">
-
-            <h1 className="weather-location">Weather Information</h1>
-            <p className="weather-sub">{detail.location}</p>
-            {weathers.length > 0 ? (
-                <div className="weather-list">
-                    {weathers.map((weather, index) => (
-                        <WeatherData key={index} temp={weather.temp.day} desc={weather.weather[0].description} icon={weather.weather[0].icon}/>
-                    ))}
-                </div>
-            ) : (
-                <p>Loading weather data...</p>
-            )}
+                <h1 className="weather-location">Weather Information</h1>
+                <p className="weather-sub">Your Location: {detail.location}</p>
+                {weathers.length > 0 ? (
+                    <div className="weather-list">
+                        {weathers.map((weather, index) => {
+                            // Generate days in the sequence 1, 2, 3, 5, ..., 7
+                            const dayIndex = index + 1; // This gives you 1, 2, 3, ..., based on index
+                            const day = [1, 2, 3, 4,5, 6,7].includes(dayIndex) ? dayIndex : null;
+                            return day ? (
+                                <WeatherData
+                                    key={index}
+                                    day={day}
+                                    temp={weather.temp.day}
+                                    desc={weather.weather[0].description}
+                                    icon={weather.weather[0].icon}
+                                />
+                            ) : null;
+                        })}
+                    </div>
+                ) : (
+                    <p>Loading weather data...</p>
+                )}
+                <hr />
             </div>
         </div>
     );
-};
+}    
 
 export default WeatherDetails;
