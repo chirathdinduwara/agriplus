@@ -147,6 +147,7 @@ export default function OrderProcess() {
                 value={paymentType}
                 onChange={handlePaymentTypeChange}
               >
+                <option value="cash">select methord</option>
                 <option value="cash">Cash</option>
                 <option value="card">Card</option>
               </select>
