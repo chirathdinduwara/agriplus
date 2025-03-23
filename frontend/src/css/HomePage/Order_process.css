@@ -141,3 +141,27 @@
   padding: 10px;
   background-color: #d2fc8f;
 }
+
+
+#save-button {
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+#icon {
+  margin-right: 8px; /* Space between icon and text */
+  font-size: 18px; /* Icon size */
+}
+
+#save-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
