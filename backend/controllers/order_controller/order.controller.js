@@ -46,6 +46,15 @@ export const allOrders = async (req, res) => {
   }
 };
 
+export const getOrder = async (req, res) => {
+  try {
+    const orders = await Order.findOne();
+    res.status(200).json({ success: true, orders });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
 //delete orders
 export const removeOrder = async (req, res) => {
   const { id } = req.params;
@@ -57,24 +66,48 @@ export const removeOrder = async (req, res) => {
   }
 };
 
-// Assign Delivery Person
+
 export const updateOrder = async (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    Shipping_addrs,
+    prd_name,
+    prd_brand,
+    item_price,
+    cetegory,
+    quantity,
+    tot_price,
+    payment_type,
+  } = req.body;
+
   try {
-    const { deliveryPerson } = req.body;
+    // Find the user by ID and update their details
     const order = await Order.findByIdAndUpdate(
-      req.params.id,
-      { deliveryPerson },
+      id,
+      {
+        name,
+        Shipping_addrs,
+        prd_name,
+        prd_brand,
+        item_price,
+        cetegory,
+        quantity,
+        tot_price,
+        payment_type,
+      },
       { new: true }
     );
 
     if (!order) {
       return res
         .status(404)
-        .json({ success: false, message: "Order not found" });
+        .json({ success: false, message: "product not found" });
     }
 
     res.status(200).json({ success: true, order });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };

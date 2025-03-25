@@ -1,19 +1,19 @@
-import '../../css/AdminDashboard/admin-dashboard.css'
-import '../../css/AdminDashboard/manage-content.css'
-import axios from 'axios';
+import "../../css/AdminDashboard/admin-dashboard.css";
+import "../../css/AdminDashboard/manage-content.css";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import React, { useEffect, useState, useParams } from 'react';
+import React, { useEffect, useState, useParams } from "react";
 
 function ManagePrd() {
-    const [products, setproducts] = useState([]);
+  const [products, setproducts] = useState([]);
 
-    const navigate = useNavigate();
-  // Fetch all products 
+  const navigate = useNavigate();
+  // Fetch all products
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get('http://localhost:5000/api/products'); // Get products from the backend
+        const response = await axios.get("http://localhost:5000/api/products"); // Get products from the backend
         setproducts(response.data.products);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -25,10 +25,12 @@ function ManagePrd() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/product/${id}`);
+      const response = await axios.delete(
+        `http://localhost:5000/api/product/${id}`
+      );
       if (response.data.success) {
         // Remove the deleted user from the products state to update the UI
-        setproducts(products.filter(user => user._id !== id));
+        setproducts(products.filter((user) => user._id !== id));
       }
     } catch (err) {
       console.error("Error deleting user:", err);
@@ -36,53 +38,67 @@ function ManagePrd() {
   };
 
   function handleAddProduct() {
-    navigate('/s-dash/addPrd')
+    navigate("/s-dash/addPrd");
   }
 
   const handleUpdateProduct = (productId) => {
     navigate(`/s-dash/updateProduct/${productId}`);
   };
 
-    return (
-        <>
-            <div className="admin-dash">
-                <h1 className="admin-dash-heading">Manage Products</h1>
-                
-                <div className="manage">
-                    <button className="add" onClick={handleAddProduct}>Add Product</button>
+  return (
+    <>
+      <div className="admin-dash">
+        <h1 className="admin-dash-heading">Manage Products</h1>
 
-                    <table className="manage-table">
-                        <thead>
-                            <td>Name</td>
-                            <td>Brand</td>
-                            <td>Price</td>
-                            <td>Stock</td>
-                            <td>Category</td>
-                            <td>Image</td>
-                            <td>Actions</td>
-                        </thead>
-                        <tbody>
-                        {products.map((product) => (
-                            <tr key={product._id}>
-                                <td>{product.prd_name}</td>
-                                <td>{product.prd_brand}</td>
-                                <td>{product.price}</td>
-                                <td>{product.stock}</td>
-                                <td>{product.cetegory}</td>
-                                <td> <img src={product.img_url} width={50} /> </td>
-                                <td>
-                                    <button className="update-btn" onClick={() => handleUpdateProduct(product._id)}>Update</button>
-                                    <button className="delete-btn" onClick={() => handleDelete(product._id)}>Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
+        <div className="manage">
+          <button className="add" onClick={handleAddProduct}>
+            Add Product
+          </button>
 
-            </div>
-        </>
-    );
+          <table className="manage-table">
+            <thead>
+              <td>Name</td>
+              <td>Brand</td>
+              <td>Price</td>
+              <td>Stock</td>
+              <td>Category</td>
+              <td>Image</td>
+              <td>Actions</td>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product.prd_name}</td>
+                  <td>{product.prd_brand}</td>
+                  <td>{product.price}</td>
+                  <td>{product.stock}</td>
+                  <td>{product.cetegory}</td>
+                  <td>
+                    {" "}
+                    <img src={product.img_url} width={50} />{" "}
+                  </td>
+                  <td>
+                    <button
+                      className="update-btn"
+                      onClick={() => handleUpdateProduct(product._id)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default ManagePrd;

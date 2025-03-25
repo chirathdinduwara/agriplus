@@ -31,8 +31,8 @@ import AddFarmingDetails from "./components/SpecialFunction/AddFarmingDetails.js
 import SmartAssist from "./components/SpecialFunction/SmartAssist.jsx";
 import Delmanager from "./pages/Delivery_Manager/del_manager_dash.jsx";
 import OrderManager from "./pages/Order_Manager/order_manager_dash.jsx";
-import EditFarmingDetails from './components/SpecialFunction/EditFarmingDetails.jsx'
-import StaffLogin from "./pages/LoginPages/StaffLogin.jsx";
+import EditFarmingDetails from "./components/SpecialFunction/EditFarmingDetails.jsx";
+import EditOrder from "./pages/Delivery_Manager/update_table.jsx";
 
 const router = createBrowserRouter([
   {
@@ -75,14 +75,14 @@ const router = createBrowserRouter([
         element: <SmartFarming />,
       },
       {
-        path: 'addDetails',
-        element: <AddFarmingDetails />
+        path: "addDetails",
+        element: <AddFarmingDetails />,
       },
       {
-        path: 'editDetails/:dId',
-        element: <EditFarmingDetails />
-      }
-    ]
+        path: "editDetails/:orderId",
+        element: <EditFarmingDetails />,
+      },
+    ],
   },
   {
     path: "assist/:id",
@@ -116,6 +116,10 @@ const router = createBrowserRouter([
   {
     path: "order_manager",
     element: <OrderManager />,
+  },
+  {
+    path: "maneger_edit_order/:orderId",
+    element: <EditOrder />,
   },
   {
     path: "a-dash",
