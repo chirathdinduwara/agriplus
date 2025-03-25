@@ -13,7 +13,6 @@ const UpdateTable = () => {
     Shipping_addrs: "",
     prd_brand: "",
     item_price: "",
-    cetegory: "",
     quantity: "",
     tot_price: "",
     payment_type: "",
@@ -122,18 +121,6 @@ const UpdateTable = () => {
             id="item_price"
             name="item_price"
             value={order.item_price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="cetegory">Category:</label>
-          <input
-            type="text"
-            id="cetegory"
-            name="cetegory"
-            value={order.cetegory}
             onChange={handleChange}
             required
           />

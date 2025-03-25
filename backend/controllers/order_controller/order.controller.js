@@ -7,7 +7,6 @@ export const createOrder = async (req, res) => {
     prd_name,
     prd_brand,
     item_price,
-    cetegory,
     quantity,
     tot_price,
     payment_type,
@@ -20,7 +19,7 @@ export const createOrder = async (req, res) => {
       prd_name,
       prd_brand,
       item_price,
-      cetegory,
+
       quantity,
       tot_price,
       payment_type,
@@ -76,7 +75,7 @@ export const updateOrder = async (req, res) => {
     prd_name,
     prd_brand,
     item_price,
-    cetegory,
+
     quantity,
     tot_price,
     payment_type,
@@ -92,7 +91,7 @@ export const updateOrder = async (req, res) => {
         prd_name,
         prd_brand,
         item_price,
-        cetegory,
+
         quantity,
         tot_price,
         payment_type,

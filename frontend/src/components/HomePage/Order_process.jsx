@@ -70,7 +70,6 @@ export default function OrderProcess() {
       prd_name: product.prd_name,
       prd_brand: product.prd_brand,
       item_price: product.price,
-      cetegory: product.cetegory,
       quantity: quantity,
       tot_price: totalPrice,
       payment_type: paymentType,

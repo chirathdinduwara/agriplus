@@ -13,10 +13,6 @@ const assignedDelsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  owner_category: {
-    type: String,
-    required: true,
-  },
   total_price: {
     type: String,
     required: true,

@@ -43,7 +43,6 @@ function AssignDelivery() {
         owner_name: order.name,
         owner_addrs: order.Shipping_addrs,
         owner_product: order.prd_name,
-        owner_category: order.cetegory,
         total_price: order.tot_price,
         delPersonEmail: delPerson.email,
         delPersonName: delPerson.full_name,

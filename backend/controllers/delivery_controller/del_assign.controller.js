@@ -5,7 +5,6 @@ export const assignDelivery = async (req, res) => {
     owner_name,
     owner_addrs,
     owner_product,
-    owner_category,
     total_price,
     delPersonEmail,
     delPersonName,
@@ -16,7 +15,6 @@ export const assignDelivery = async (req, res) => {
     !owner_name ||
     !owner_addrs ||
     !owner_product ||
-    !owner_category ||
     !total_price ||
     !delPersonEmail ||
     !delPersonName
@@ -31,7 +29,6 @@ export const assignDelivery = async (req, res) => {
       owner_name,
       owner_addrs,
       owner_product,
-      owner_category,
       total_price,
       delPersonEmail,
       delPersonName,
