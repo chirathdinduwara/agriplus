@@ -66,6 +66,7 @@ export const removeOrder = async (req, res) => {
   }
 };
 
+// Assign Delivery Person
 
 export const updateOrder = async (req, res) => {
   const { id } = req.params;
