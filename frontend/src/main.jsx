@@ -42,6 +42,8 @@ import Deliveries from "./pages/Delivery_Manager/DeliverPerson_Dashboard/Deliver
 import DelPerLogin from "./pages/LoginPages/DelPersonLogin.jsx";
 import TrackDels from "./pages/Delivery_Manager/TrackDeliveries.jsx";
 import ManageStaff from "./components/AdminDashboard/ManageStaff.jsx";
+import AddStaff from "./components/AdminDashboard/AddStaff.jsx";
+import UpdateStaff from "./components/AdminDashboard/UpdateStaff.jsx";
 
 const router = createBrowserRouter([
   {
@@ -157,6 +159,14 @@ const router = createBrowserRouter([
       {
         path: "manStaff",
         element: <ManageStaff />
+      },
+      {
+        path: 'addStaff',
+        element: <AddStaff />
+      },
+      {
+        path: "updateStaff/:userId",
+        element: <UpdateStaff />,
       }
     ],
   },
