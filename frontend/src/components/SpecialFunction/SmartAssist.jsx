@@ -32,7 +32,7 @@ const WeatherDetails = () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/tasks/`, {
                     params: {
-                        crop_name: 'Paddy',
+                        crop_name: detail.crop_name,
                         location: 'Sri_Lanka'
                     }
                 });

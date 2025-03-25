@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams} from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import "../../css/User_Manager/smartAssit.css";
 
-function AddFarmingDetails() {
+function EditFarmingDetails() {
     const navigate = useNavigate();
+    const { dId } = useParams();
     const [formData, setFormData] = useState({
             farmer_id: '',
             farmer_name: '',
@@ -36,27 +37,43 @@ function AddFarmingDetails() {
             setFormData({ ...formData, [e.target.name]: e.target.value });
         };
     
-
-    const crops = ["Paddy", "Green Gram", "Corn"];
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:5000/api/addDetails", formData);
-            console.log(response);
-            if (response.data.success) {
-                toast.success("Details Added successful!");
+     useEffect(() => {
+            // Fetch user data when component mounts
+            async function fetchDetailData() {
+              try {
+                const response = await axios.get(`http://localhost:5000/api/getDetails/${dId}`);
+                if (response.data.success) {
+                  setFormData(response.data.detail);  // Populate the form with the fetched data
+                } else {
+                  console.log("Details not found");
+                }
+              } catch (error) {
+                console.error("Error fetching Details:", error);
+              }
+            }
+            
+            fetchDetailData();
+          }, [dId]);
+    
+          const handleSubmit = async (e) => {
+            e.preventDefault();
+            try {
+              const response = await axios.put(`http://localhost:5000/api/detail/${dId}`, formData);
+              if (response.data.success) {
+                toast.success('details updated successfully!');
                 setTimeout(() => {
                     navigate("/profile/SmartAssit");
                 }, 1000);
-            } else {
-                toast.error(response.data.message || "Error in Details");
+              } else {
+                toast.error('Failed to update details.');
+              }
+            } catch (error) {
+              console.error("Error updating details data:", error);
+              toast.error('An error occurred while updating the details.');
             }
-        } catch (error) {
-            console.error(error);  // Log the error for debugging
-            toast.error("Details creation failed! Please try again.");
-        }
-    };
+          };
+
+    const crops = ["Paddy", "Green Gram", "Corn"];
 
     return (
         <div className="smart-farming-details">
@@ -95,11 +112,13 @@ function AddFarmingDetails() {
                 />
 
 
+                <div>
                 <button type="submit" className="add-btn">Submit</button>
+                </div>
             </form>
             <ToastContainer />
         </div>
     );
 }
 
-export default AddFarmingDetails;
+export default EditFarmingDetails;

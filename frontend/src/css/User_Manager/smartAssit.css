@@ -84,6 +84,13 @@
 
 }
 
+.smart-item-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-content: center;
+}
+
 .smart-form label {
     font-weight: bold;
     margin-top: 10px;
@@ -120,4 +127,25 @@
 
 .add-btn:hover {
     background: #45a049;
+}
+
+.del-btn {
+    margin-top: 10px;
+    padding: 10px;
+    background: #af4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.del-btn:hover {
+    background: #a04545;
+}
+
+.btn-anime {
+    animation: fadeIn 1s ease-in; 
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    
 }

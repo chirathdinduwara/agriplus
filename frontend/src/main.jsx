@@ -29,6 +29,7 @@ import SmartFarming from './components/User_Manager/SmartFarming.jsx'
 import Order from "./components/HomePage/Order_process.jsx";
 import AddFarmingDetails from './components/SpecialFunction/AddFarmingDetails.jsx'
 import SmartAssist from './components/SpecialFunction/SmartAssist.jsx'
+import EditFarmingDetails from './components/SpecialFunction/EditFarmingDetails.jsx'
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: 'addDetails',
         element: <AddFarmingDetails />
+      },
+      {
+        path: 'editDetails/:dId',
+        element: <EditFarmingDetails />
       }
     ]
   },
