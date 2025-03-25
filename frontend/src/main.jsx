@@ -39,6 +39,8 @@ import DelPerDashboard_main from "./pages/Delivery_Manager/DeliverPerson_Dashboa
 import DelPerDashboard from "./pages/Delivery_Manager/DeliverPerson_Dashboard/DelPerDashboard.jsx";
 import MarkProgress from "./pages/Delivery_Manager/DeliverPerson_Dashboard/MarkProgress.jsx";
 import Deliveries from "./pages/Delivery_Manager/DeliverPerson_Dashboard/Deliveries.jsx";
+import DelPerLogin from "./pages/LoginPages/DelPersonLogin.jsx";
+import TrackDels from "./pages/Delivery_Manager/TrackDeliveries.jsx";
 
 const router = createBrowserRouter([
   {
@@ -192,6 +194,14 @@ const router = createBrowserRouter([
         element: <MarkProgress />,
       },
     ],
+  },
+  {
+    path: "del_person_login",
+    element: <DelPerLogin />,
+  },
+  {
+    path: "track_delivery",
+    element: <TrackDels />,
   },
 ]);
 

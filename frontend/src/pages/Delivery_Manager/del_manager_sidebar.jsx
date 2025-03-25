@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../css/Delivery_Manager/del_manager_dash.css";
 
 const del_manager_sidebar = () => {
@@ -9,7 +10,9 @@ const del_manager_sidebar = () => {
         <ul id="menu-list">
           <li id="menu-dashboard">Dashboard</li>
           <li id="menu-orders">Orders</li>
-          <li id="menu-staff">Delivery Staff</li>
+          <Link to="/track_delivery">
+            <li id="menu-staff">Track Delivery</li>
+          </Link>
         </ul>
       </div>
     </>
