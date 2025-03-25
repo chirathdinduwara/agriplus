@@ -24,18 +24,44 @@
     background-color: #3aa86d;
 }
 
-/* .manage-table {
+.manage-table {
     width: 100%;
     border-collapse: collapse;
     background: white;
     border-radius: 8px;
     overflow: hidden;
-} */
+    display: block;
+}
+
+/* Scrollable Table Container */
+.table-container {
+    max-height: 400px; /* Set the max height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling (if needed) */
+    border: 1px solid #ccc; /* Optional: Add border for better visibility */
+}
+
+/* Make the table fixed inside the scroll container */
+.manage-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
 
 .manage-table thead {
     background-color: #252C48;
     color: white;
     font-weight: bold;
+    position: sticky;
+    top: 0; /* Stick to the top */
+    z-index: 1; /* Ensure it stays above other content */
+}
+
+/* Style for table headers */
+.manage-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .manage-table th,

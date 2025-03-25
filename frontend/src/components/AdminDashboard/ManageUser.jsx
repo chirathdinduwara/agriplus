@@ -50,14 +50,16 @@ function ManageUser() {
                 
                 <div className="manage">
                     <button className="add" onClick={handleAddUser}>Add User</button>
-
+                    <div className="table-container">
                     <table className="manage-table">
                         <thead>
-                            <td>Name</td>
-                            <td>Email</td>
-                            <td>Phone</td>
-                            <td>Address</td>
-                            <td>Actions</td>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                          </tr>
                         </thead>
                         <tbody>
                         {users.map((user) => (
@@ -74,6 +76,8 @@ function ManageUser() {
                         ))}
                         </tbody>
                     </table>
+                    </div>
+                    
                 </div>
 
             </div>
