@@ -34,6 +34,11 @@ import OrderManager from "./pages/Order_Manager/order_manager_dash.jsx";
 import EditFarmingDetails from "./components/SpecialFunction/EditFarmingDetails.jsx";
 import EditOrder from "./pages/Delivery_Manager/update_table.jsx";
 import StaffLogin from "./pages/LoginPages/StaffLogin.jsx";
+import AssignDelivery from "./pages/Delivery_Manager/del_persons.jsx";
+import DelPerDashboard_main from "./pages/Delivery_Manager/DeliverPerson_Dashboard/DelPerDashboard_main.jsx";
+import DelPerDashboard from "./pages/Delivery_Manager/DeliverPerson_Dashboard/DelPerDashboard.jsx";
+import MarkProgress from "./pages/Delivery_Manager/DeliverPerson_Dashboard/MarkProgress.jsx";
+import Deliveries from "./pages/Delivery_Manager/DeliverPerson_Dashboard/Deliveries.jsx";
 
 const router = createBrowserRouter([
   {
@@ -99,7 +104,7 @@ const router = createBrowserRouter([
   },
   {
     path: "staff",
-    element: <StaffLogin />
+    element: <StaffLogin />,
   },
   // user manager section
   {
@@ -113,6 +118,10 @@ const router = createBrowserRouter([
   {
     path: "del_manager",
     element: <Delmanager />,
+  },
+  {
+    path: "assignDelivery",
+    element: <AssignDelivery />,
   },
   {
     path: "order_manager",
@@ -163,6 +172,24 @@ const router = createBrowserRouter([
       {
         path: "updateProduct/:prdId",
         element: <UpdatePrd />,
+      },
+    ],
+  },
+  {
+    path: "delPer-dash",
+    element: <DelPerDashboard_main />,
+    children: [
+      {
+        index: true,
+        element: <DelPerDashboard />,
+      },
+      {
+        path: "manADeliveries",
+        element: <Deliveries />,
+      },
+      {
+        path: "markProgress",
+        element: <MarkProgress />,
       },
     ],
   },

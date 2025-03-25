@@ -42,23 +42,23 @@ const DelManagerTable = () => {
     fetchDeliveryPersons();
   }, []);
 
-  const handleAssignDelivery = async (orderId, deliveryPersonId) => {
-    if (!deliveryPersonId) {
-      alert("Please select a delivery person.");
-      return;
-    }
+  // const handleAssignDelivery = async (orderId, deliveryPersonId) => {
+  //   if (!deliveryPersonId) {
+  //     alert("Please select a delivery person.");
+  //     return;
+  //   }
 
-    try {
-      await axios.post("http://localhost:5000/api/assign_delivery", {
-        orderId,
-        deliveryPersonId,
-      });
-      alert("Order assigned successfully!");
-    } catch (err) {
-      console.error("Error assigning delivery:", err);
-      alert("Failed to assign order.");
-    }
-  };
+  //   try {
+  //     await axios.post("http://localhost:5000/api/assign_delivery", {
+  //       orderId,
+  //       deliveryPersonId,
+  //     });
+  //     alert("Order assigned successfully!");
+  //   } catch (err) {
+  //     console.error("Error assigning delivery:", err);
+  //     alert("Failed to assign order.");
+  //   }
+  // };
 
   const deleteOrder = async (orderId) => {
     try {
@@ -80,6 +80,11 @@ const DelManagerTable = () => {
     navigate(`/maneger_edit_order/${orderId}`);
   };
 
+  const handleAssignClick = (delivery) => {
+    navigate("/assignDelivery", { state: { delivery } });
+    console.log(delivery);
+  };
+
   return (
     <>
       <table id="orders-table">
@@ -90,7 +95,6 @@ const DelManagerTable = () => {
             <th>Product Name</th>
             <th>Category</th>
             <th>Total</th>
-            <th>Delivery Person</th>
             <th>Assign Delivery</th>
           </tr>
         </thead>
@@ -103,31 +107,7 @@ const DelManagerTable = () => {
               <td>{order.cetegory}</td>
               <td>{order.tot_price}</td>
               <td>
-                <select
-                  onChange={(e) =>
-                    setDeliveryPersons({
-                      ...deliveryPersons,
-                      [order._id]: e.target.value,
-                    })
-                  }
-                  value={deliveryPersons[order._id] || ""}
-                >
-                  <option value="">Select</option>
-                  {Object.entries(deliveryPersons).map(([id, name]) => (
-                    <option key={id} value={id}>
-                      {name}
-                    </option>
-                  ))}
-                </select>
-              </td>
-              <td>
-                <button
-                  onClick={() =>
-                    handleAssignDelivery(order._id, deliveryPersons[order._id])
-                  }
-                >
-                  Assign
-                </button>
+                <button onClick={() => handleAssignClick(order)}>Assign</button>
                 <button onClick={() => handleUpdateProduct(order._id)}>
                   Edit
                 </button>
