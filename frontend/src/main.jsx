@@ -1,34 +1,36 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { createBrowserRouter ,RouterProvider } from 'react-router-dom'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Error from './components/Error/err_404_page.jsx'
-import Home from './components/HomePage/Home.jsx'
-import Contact from './pages/Contact.jsx'
-import About from './pages/About.jsx'
-import Store from './pages/Store.jsx'
-import Login from './pages/LoginPages/Login.jsx'
-import AdminLogin from './pages/LoginPages/AdminLogin.jsx'
-import AdminDashboard from './pages/Dashboards/AdminDashboard.jsx'
-import AdminDash from './components/AdminDashboard/AdminDash.jsx'
-import ManageUser from './components/AdminDashboard/ManageUser.jsx'
-import AddUser from './components/AdminDashboard/AddUser.jsx'
-import UpdateUser from './components/AdminDashboard/UpdateUser.jsx'
-import UserSignup from './pages/SignupPages/user_signup.jsx'
-import StaffDash from './components/StaffDashboard/StaffDash.jsx'
-import StaffDashboard from './pages/Dashboards/StaffDashboard.jsx'
-import ManagePrd from './components/StaffDashboard/ManagePrd.jsx'
-import AddPrd from './components/StaffDashboard/AddPrd.jsx'
-import UpdatePrd from './components/StaffDashboard/UpdatePrd.jsx'
-import Product from './components/HomePage/Product.jsx'
-import UserProfile from './components/User_Manager/UserProfile.jsx'
-import UserDashboard from './components/User_Manager/UserDashboard.jsx'
-import SmartFarming from './components/User_Manager/SmartFarming.jsx'
+import Error from "./components/Error/err_404_page.jsx";
+import Home from "./components/HomePage/Home.jsx";
+import Contact from "./pages/Contact.jsx";
+import About from "./pages/About.jsx";
+import Store from "./pages/Store.jsx";
+import Login from "./pages/LoginPages/Login.jsx";
+import AdminLogin from "./pages/LoginPages/AdminLogin.jsx";
+import AdminDashboard from "./pages/Dashboards/AdminDashboard.jsx";
+import AdminDash from "./components/AdminDashboard/AdminDash.jsx";
+import ManageUser from "./components/AdminDashboard/ManageUser.jsx";
+import AddUser from "./components/AdminDashboard/AddUser.jsx";
+import UpdateUser from "./components/AdminDashboard/UpdateUser.jsx";
+import UserSignup from "./pages/SignupPages/user_signup.jsx";
+import StaffDash from "./components/StaffDashboard/StaffDash.jsx";
+import StaffDashboard from "./pages/Dashboards/StaffDashboard.jsx";
+import ManagePrd from "./components/StaffDashboard/ManagePrd.jsx";
+import AddPrd from "./components/StaffDashboard/AddPrd.jsx";
+import UpdatePrd from "./components/StaffDashboard/UpdatePrd.jsx";
+import Product from "./components/HomePage/Product.jsx";
+import UserProfile from "./components/User_Manager/UserProfile.jsx";
+import UserDashboard from "./components/User_Manager/UserDashboard.jsx";
+import SmartFarming from "./components/User_Manager/SmartFarming.jsx";
 import Order from "./components/HomePage/Order_process.jsx";
-import AddFarmingDetails from './components/SpecialFunction/AddFarmingDetails.jsx'
-import SmartAssist from './components/SpecialFunction/SmartAssist.jsx'
+import AddFarmingDetails from "./components/SpecialFunction/AddFarmingDetails.jsx";
+import SmartAssist from "./components/SpecialFunction/SmartAssist.jsx";
+import Delmanager from "./pages/Delivery_Manager/del_manager_dash.jsx";
+import OrderManager from "./pages/Order_Manager/order_manager_dash.jsx";
 
 const router = createBrowserRouter([
   {
@@ -59,30 +61,30 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'profile',
+    path: "profile",
     element: <UserProfile />,
     children: [
       {
         index: true,
-        element: <UserDashboard />
+        element: <UserDashboard />,
       },
       {
-        path: 'SmartAssit',
-        element: <SmartFarming />
+        path: "SmartAssit",
+        element: <SmartFarming />,
       },
       {
-        path: 'addDetails',
-        element: <AddFarmingDetails />
-      }
-    ]
+        path: "addDetails",
+        element: <AddFarmingDetails />,
+      },
+    ],
   },
   {
-    path: 'assist/:id',
-    element: <SmartAssist />
+    path: "assist/:id",
+    element: <SmartAssist />,
   },
   {
-    path: 'login',
-    element: <Login />
+    path: "login",
+    element: <Login />,
   },
   {
     path: "admin",
@@ -96,6 +98,14 @@ const router = createBrowserRouter([
   {
     path: "sign_up",
     element: <UserSignup />,
+  },
+  {
+    path: "del_manager",
+    element: <Delmanager />,
+  },
+  {
+    path: "order_manager",
+    element: <OrderManager />,
   },
   {
     path: "a-dash",
