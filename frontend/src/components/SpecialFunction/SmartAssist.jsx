@@ -33,11 +33,11 @@ const WeatherDetails = () => {
                 const response = await axios.get(`http://localhost:5000/api/tasks/`, {
                     params: {
                         crop_name: detail.crop_name,
-                        location: 'Sri_Lanka'
+                        location: 'Sri Lanka'
                     }
                 });
                 setTasks(response.data); 
-
+                console.log(response.data);
                 // Set the default selected period (first month)
                 if (response.data.tasks.length > 0) {
                     setSelectedPeriod(response.data.tasks[0].period);
@@ -92,12 +92,13 @@ const WeatherDetails = () => {
 
                 {/* Task List for Selected Period */}
                 <div className="task-container">
+                    <h3>Tasks</h3>
                     {tasks?.tasks?.map((task) =>
                         task.period === selectedPeriod ? (
                             <div key={task._id} className="task-card">
                                 <ul>
                                     {task.task_list.map((item, i) => (
-                                        <li key={i}>{item}</li>
+                                        <li className="task-item" key={i}>{item}</li>
                                     ))}
                                 </ul>
                             </div>
