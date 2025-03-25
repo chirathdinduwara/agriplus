@@ -4,6 +4,8 @@ import '../../css/User_Manager/smartAssit.css';
 import SmartItem from '../SpecialFunction/SmartItem';
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from 'jwt-decode';
+import { IoTrashBinOutline } from "react-icons/io5";
+import { MdOutlineModeEdit } from "react-icons/md";
 
 
 function SmartFarming() {
@@ -52,6 +54,21 @@ function SmartFarming() {
         navigate(`/assist/${detail._id}`, { state: detail });
     };
     
+    const handleDelete = async (id) => {
+      try {
+        const response = await axios.delete(`http://localhost:5000/api/detail/${id}`);
+        if (response.data.success) {
+
+          setDetails(details.filter(detail => detail._id !== id));
+        }
+      } catch (err) {
+        console.error("Error deleting detail:", err);
+      }
+    };
+
+    const handleUpdateDetail = (dId) => {
+      navigate(`/profile/editDetails/${dId}`);
+    };
     
     return (
         <>
@@ -59,16 +76,29 @@ function SmartFarming() {
                 <h1 className="smart-heading">Smart Farming Assistance</h1>
                 <button className="add" onClick={handleAddDetails}>Add</button>
                 <div className="smart-farming-list">
-                    {filteredDetails.map((detail) => (
-                        <div key={detail._id} onClick={() => handleItemClick(detail)}>
-                            <SmartItem 
-                                crop_name={detail.crop_name} 
-                                area={detail.area} 
-                                location={detail.location} 
-                            />
-                        </div>
-                    ))}
-                </div>
+                  {filteredDetails.map((detail) => (
+                    <div className='smart-item-container'>
+                      <div key={detail._id} className="smart-item-container" onClick={() => handleItemClick(detail)} >
+                      <SmartItem 
+                        crop_name={detail.crop_name} 
+                        area={detail.area} 
+                        location={detail.location} 
+                        
+                      />
+                    </div>
+                    <button onClick={() => handleUpdateDetail(detail._id)} className="add-btn btn-anime">
+                    <MdOutlineModeEdit />
+                      </button>
+                      <button onClick={() => handleDelete(detail._id)} className="del-btn btn-anime">
+                        
+                        <IoTrashBinOutline />
+                      </button>
+                    </div>
+                    
+                    
+    ))}
+</div>
+
             </div>
         </>
     );
