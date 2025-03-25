@@ -28,6 +28,20 @@
     gap: 20px;
 }
 
+#login-btn{
+    font-size: large;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    background-color: #525f96;
+    border: none;
+}
+
+#login-btn:hover{
+    background-color: #7183d0;
+}
+
 .a-nav-link {
     border: 1px solid white;
     height: 50px;

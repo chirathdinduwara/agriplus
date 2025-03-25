@@ -1,5 +1,6 @@
 import "../../css/AdminDashboard/admin-dashboard.css";
 import "../../css/AdminDashboard/manage-content.css";
+import { jsPDF } from "jspdf";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -45,6 +46,32 @@ function ManagePrd() {
     navigate(`/s-dash/updateProduct/${productId}`);
   };
 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.text("Product Report", 20, 20);
+    doc.text("Generated on: " + new Date().toLocaleDateString(), 20, 30);
+
+    let yPos = 40; // Start position for table
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text("Product Name", 20, yPos);
+    doc.text("Product Brand", 70, yPos);
+    doc.text("Product Stock", 120, yPos);
+    doc.text("Product Category", 170, yPos);
+    yPos += 10; // Move to the next line
+
+    products.forEach((product) => {
+      doc.setFont("helvetica", "normal");
+      doc.text(String(product.prd_name), 20, yPos); // Ensure text is a string
+      doc.text(String(product.prd_brand), 70, yPos);
+      doc.text(String(product.stock), 120, yPos);
+      doc.text(String(product.cetegory), 170, yPos);
+      yPos += 10; // Move to the next line
+    });
+
+    doc.save("admin_report.pdf"); // Save the generated PDF
+  };
+
   return (
     <>
       <div className="admin-dash">
@@ -54,7 +81,7 @@ function ManagePrd() {
           <button className="add" onClick={handleAddProduct}>
             Add Product
           </button>
-          
+
           <div className="table-container">
             <table className="manage-table">
               <thead>
@@ -98,6 +125,11 @@ function ManagePrd() {
               </tbody>
             </table>
           </div>
+          <br />
+          <br />
+          <button className="add" onClick={generatePDF}>
+            Reports
+          </button>
         </div>
       </div>
     </>

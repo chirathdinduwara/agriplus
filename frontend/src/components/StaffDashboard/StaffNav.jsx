@@ -1,14 +1,10 @@
 
-
-
-
-
-
 import {Link} from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
 import logo from "../../assets/Graphics/logo.png"
 import { useNavigate } from "react-router-dom";
+
 
 function StaffNav() {
 
@@ -47,7 +43,7 @@ function StaffNav() {
                 </ul>
 
                 <div className="nav-a">
-                    <button className='login-btn' onClick={logout} type="submit">Log Out</button>
+                    <button id='login-btn' onClick={logout} type="submit">Log Out</button>
                 </div>
             </nav>
         </>
