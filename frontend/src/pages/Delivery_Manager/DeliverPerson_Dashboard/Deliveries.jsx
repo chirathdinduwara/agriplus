@@ -48,23 +48,22 @@ function Deliveries() {
         <div className="manage">
           <table className="manage-table">
             <thead>
-              <td>Car Name</td>
-              <td>Image</td>
-              <td>Name</td>
-              <td>Address</td>
+              <td>Reciever Name </td>
+              <td>Reciver Address</td>
+              <td>Product Name</td>
+              <td>Total Price (Rs.)</td>
+
               <td></td>
             </thead>
 
             <tbody>
+              {console.log(deliveries)}
               {deliveries.map((delivery) => (
                 <tr key={delivery._id}>
-                  <td>{delivery.name}</td>
-                  <td>
-                    <img src={delivery.image} width={100} />
-                  </td>
                   <td>{delivery.owner_name}</td>
-                  <td>{delivery.address}</td>
-                  <td>{delivery.phone}</td>
+                  <td>{delivery.owner_addrs}</td>
+                  <td>{delivery.owner_product}</td>
+                  <td>{delivery.total_price}</td>
                 </tr>
               ))}
             </tbody>

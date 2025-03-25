@@ -70,6 +70,11 @@
     padding-bottom: 30px;
 }
 
+#mainManger{
+    height: 100vh;
+    display: flex;
+}
+
 .admin-dash-heading {
     font-family: "Outfit", serif;
     padding: 40px;
@@ -98,9 +103,10 @@
 }
 
 .s-name {
+    font-size: 1.5rem;
     font-weight: 600; 
 }
 .s-amount {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
 }

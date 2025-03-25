@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import "../../css/Delivery_Manager/del_persons.css"
 
 function AssignDelivery() {
   const location = useLocation();
@@ -53,7 +54,7 @@ function AssignDelivery() {
         toast.success("order assigned successfully!");
         await handleDelete(order._id);
         setTimeout(() => {
-          navigate("/delMan-dash");
+          navigate("/del_manager");
         }, 1000);
       } else {
         // Failure Toast
@@ -67,12 +68,12 @@ function AssignDelivery() {
   };
 
   return (
-    <div className="admin-dash">
+    <div id="main_persons" className="admin-dash">
       <h1 className="admin-dash-heading">Assign order Person</h1>
       <table className="manage-table">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Delivery Persons</th>
             <th>Email</th>
             <th>Address</th>
             <th>Phone</th>

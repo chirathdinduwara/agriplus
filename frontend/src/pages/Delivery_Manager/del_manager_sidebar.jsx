@@ -8,9 +8,11 @@ const del_manager_sidebar = () => {
       <div id="sidebar">
         <h2 id="logo">Delivery Manager</h2>
         <ul id="menu-list">
-          <li id="menu-dashboard">Dashboard</li>
+          <Link id="link" to="/del_manager">
+            <li id="menu-dashboard">Dashboard</li>
+          </Link>
           <li id="menu-orders">Orders</li>
-          <Link to="/track_delivery">
+          <Link id="link" to="/track_delivery">
             <li id="menu-staff">Track Delivery</li>
           </Link>
         </ul>

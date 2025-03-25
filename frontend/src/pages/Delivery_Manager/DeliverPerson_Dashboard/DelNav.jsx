@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import Logo from '../../../assets/Graphics/logo.png'
 
 import { useNavigate } from "react-router-dom";
 
@@ -31,10 +32,10 @@ function DelPerNav() {
     <>
       <nav className="a-nav">
         <ul>
-          <h2 className="logo">RentCar.</h2>
+          <h2 className="logo">Agriplus +</h2>
           <h1 className="nav-head">Hi! 😎 {userName}</h1>
           <li>
-            <Link className="text-none" to="/del-man-dash">
+            <Link className="text-none" to="/delPer-dash">
               Dashboard
             </Link>
           </li>

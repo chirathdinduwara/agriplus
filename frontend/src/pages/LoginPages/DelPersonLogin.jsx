@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import '../../css/Login/delPersonLogin.css'
 
 function DelPerLogin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -49,15 +50,15 @@ function DelPerLogin() {
 
   return (
     <>
-      <div className="login">
+      <div id="login">
         <img
-          className="r-log"
+          id="r-log"
           src="../src/assets/images/graphics/login.svg"
           alt=""
         />
-        <div className="l-log">
-          <form className="log-in" onSubmit={handleLogin}>
-            <h1 className="log-head">Log-In</h1>
+        <div id="l-log">
+          <form id="log-in" onSubmit={handleLogin}>
+            <h1 id="log-head">Delivery Person Log-In</h1>
             <input
               type="email"
               placeholder="Email"
@@ -74,13 +75,13 @@ function DelPerLogin() {
               value={formData.password}
               required
             />
-            <button className="login-btn2" type="submit">
+            <button id="login-btn2" type="submit">
               Login
             </button>
 
             <p>
               ⬅{" "}
-              <Link className="link" to="/">
+              <Link id="link" to="/">
                 Home
               </Link>
             </p>

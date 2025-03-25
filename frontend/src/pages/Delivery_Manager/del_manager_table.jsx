@@ -107,11 +107,11 @@ const DelManagerTable = () => {
               <td>{order.cetegory}</td>
               <td>{order.tot_price}</td>
               <td>
-                <button onClick={() => handleAssignClick(order)}>Assign</button>
-                <button onClick={() => handleUpdateProduct(order._id)}>
+                <button id="delete_btn" onClick={() => handleAssignClick(order)}>Assign</button>
+                <button id="delete_btn" onClick={() => handleUpdateProduct(order._id)}>
                   Edit
                 </button>
-                <button onClick={() => deleteOrder(order._id)}>Delete</button>
+                <button id="delete_btn" onClick={() => deleteOrder(order._id)}>Delete</button>
               </td>
             </tr>
           ))}
