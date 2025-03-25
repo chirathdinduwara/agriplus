@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    cetegory: {
+    item_price: {
       type: String,
       required: true,
     },

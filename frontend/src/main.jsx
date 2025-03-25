@@ -27,16 +27,12 @@ import UserProfile from "./components/User_Manager/UserProfile.jsx";
 import UserDashboard from "./components/User_Manager/UserDashboard.jsx";
 import SmartFarming from "./components/User_Manager/SmartFarming.jsx";
 import Order from "./components/HomePage/Order_process.jsx";
-<<<<<<< HEAD
 import AddFarmingDetails from "./components/SpecialFunction/AddFarmingDetails.jsx";
 import SmartAssist from "./components/SpecialFunction/SmartAssist.jsx";
 import Delmanager from "./pages/Delivery_Manager/del_manager_dash.jsx";
 import OrderManager from "./pages/Order_Manager/order_manager_dash.jsx";
-=======
-import AddFarmingDetails from './components/SpecialFunction/AddFarmingDetails.jsx'
-import SmartAssist from './components/SpecialFunction/SmartAssist.jsx'
-import EditFarmingDetails from './components/SpecialFunction/EditFarmingDetails.jsx'
->>>>>>> 084ad3eced5cd7af8ec72d1bc57d3fb347214e82
+import EditFarmingDetails from "./components/SpecialFunction/EditFarmingDetails.jsx";
+import EditOrder from "./pages/Delivery_Manager/update_table.jsx";
 
 const router = createBrowserRouter([
   {
@@ -79,21 +75,14 @@ const router = createBrowserRouter([
         element: <SmartFarming />,
       },
       {
-<<<<<<< HEAD
         path: "addDetails",
         element: <AddFarmingDetails />,
       },
-    ],
-=======
-        path: 'addDetails',
-        element: <AddFarmingDetails />
-      },
       {
-        path: 'editDetails/:dId',
-        element: <EditFarmingDetails />
-      }
-    ]
->>>>>>> 084ad3eced5cd7af8ec72d1bc57d3fb347214e82
+        path: "editDetails/:orderId",
+        element: <EditFarmingDetails />,
+      },
+    ],
   },
   {
     path: "assist/:id",
@@ -123,6 +112,10 @@ const router = createBrowserRouter([
   {
     path: "order_manager",
     element: <OrderManager />,
+  },
+  {
+    path: "maneger_edit_order/:orderId",
+    element: <EditOrder />,
   },
   {
     path: "a-dash",
