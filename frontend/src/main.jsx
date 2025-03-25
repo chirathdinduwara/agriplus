@@ -33,6 +33,7 @@ import Delmanager from "./pages/Delivery_Manager/del_manager_dash.jsx";
 import OrderManager from "./pages/Order_Manager/order_manager_dash.jsx";
 import EditFarmingDetails from "./components/SpecialFunction/EditFarmingDetails.jsx";
 import EditOrder from "./pages/Delivery_Manager/update_table.jsx";
+import StaffLogin from "./pages/LoginPages/StaffLogin.jsx";
 
 const router = createBrowserRouter([
   {
