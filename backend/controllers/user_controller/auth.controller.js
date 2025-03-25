@@ -215,3 +215,49 @@ export const registerStaff = async (req,res) => {
       res.status(500).json({ success: false, message: "Server Error" });
     }
 }
+
+export const allStaff =  async (req, res) => {
+  try {
+    const staff = await Staff.find();
+    res.status(200).json({ success: true, staff });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const updateStaff = async (req, res) => {
+  const { id } = req.params;
+  const { full_name, email, phone, password } = req.body;
+
+  try {
+    let updatedData = { full_name, email, phone };
+
+    // Hash the password only if it's provided
+    if (password) {
+      const salt = await bcrypt.genSalt(10); // Generate salt
+      updatedData.password = await bcrypt.hash(password, salt); // Hash password
+    }
+
+    // Update user data
+    const user = await Staff.findByIdAndUpdate(id, updatedData, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    res.status(200).json({ success: true, user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const getStaff = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const staff = await Staff.findById(id);
+    res.status(200).json({ success: true, staff });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};

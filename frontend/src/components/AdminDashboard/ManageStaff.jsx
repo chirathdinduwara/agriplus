@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import React, { useEffect, useState, useParams } from 'react';
 
-function ManageUser() {
+function ManageStaff() {
     const [users, setUsers] = useState([]);
 
     const navigate = useNavigate();
@@ -13,8 +13,8 @@ function ManageUser() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await axios.get('http://localhost:5000/api/users'); // Get users from the backend
-        setUsers(response.data.users);
+        const response = await axios.get('http://localhost:5000/api/staffs'); // Get users from the backend
+        setUsers(response.data.staff);
       } catch (err) {
         console.error("Error fetching users:", err);
       }
@@ -36,27 +36,26 @@ function ManageUser() {
   };
 
   function handleAddUser() {
-    navigate('/a-dash/addUser')
+    navigate('/a-dash/addStaff')
   }
 
   const handleUpdateUser = (userId) => {
-    navigate(`/a-dash/updateUser/${userId}`);
+    navigate(`/a-dash/updateStaff/${userId}`);
   };
 
     return (
         <>
             <div className="admin-dash">
-                <h1 className="admin-dash-heading">Manage User</h1>
+                <h1 className="admin-dash-heading">Manage Staff</h1>
                 
                 <div className="manage">
-                    <button className="add" onClick={handleAddUser}>Add User</button>
+                    <button className="add" onClick={handleAddUser}>Add Staff</button>
                     <div className="table-container">
                     <table className="manage-table">
                         <thead>
                           <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Address</th>
                             <th>Phone</th>
                             <th>Actions</th>
                           </tr>
@@ -66,7 +65,6 @@ function ManageUser() {
                             <tr key={user._id}>
                                 <td>{user.full_name}</td>
                                 <td>{user.email}</td>
-                                <td>{user.address}</td>
                                 <td>{user.phone}</td>
                                 <td>
                                     <button className="update-btn" onClick={() => handleUpdateUser(user._id)}>Update</button>
@@ -85,4 +83,4 @@ function ManageUser() {
     );
 }
 
-export default ManageUser;
+export default ManageStaff;

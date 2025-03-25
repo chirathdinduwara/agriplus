@@ -75,7 +75,7 @@ function AddPrd() {
                 </div>
                 <div className="button-group">
                     <button type="button" className="back-btn" onClick={() => navigate(-1)}>Back</button>
-                    <button type="submit" className="submit-btn">Add User</button>
+                    <button type="submit" className="submit-btn">Add Product</button>
                 </div>
             </form>
             <ToastContainer />
