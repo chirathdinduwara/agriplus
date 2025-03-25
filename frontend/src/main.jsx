@@ -90,7 +90,7 @@ const router = createBrowserRouter([
         element: <AddFarmingDetails />,
       },
       {
-        path: "editDetails/:orderId",
+        path: "editDetails/:dId",
         element: <EditFarmingDetails />,
       },
     ],

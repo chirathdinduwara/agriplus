@@ -6,7 +6,7 @@ function SmartItem({crop_name, location, area}) {
                     {crop_name}
                 </p>
                 <p className="smart-area">
-                    Area : {area} km<sup>2</sup>
+                    Area : {area} Hectares
                 </p>
                 <p className="smart-area">
                     Location : {location} 

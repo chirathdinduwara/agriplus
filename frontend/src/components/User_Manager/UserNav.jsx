@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../../css/HomePage/userProfile.css';
 import { GoChevronRight, GoPerson, GoCodeOfConduct, GoPackage, GoPersonFill, GoReply,GoHome    } from "react-icons/go";
-import logo from "../../assets/Graphics/logo.png";
+import logo from "../../assets/Graphics/black.png";
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
