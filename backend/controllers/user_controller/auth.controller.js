@@ -215,3 +215,12 @@ export const registerStaff = async (req,res) => {
       res.status(500).json({ success: false, message: "Server Error" });
     }
 }
+
+export const allStaff =  async (req, res) => {
+  try {
+    const staff = await Staff.find();
+    res.status(200).json({ success: true, staff });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};

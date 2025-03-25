@@ -46,7 +46,7 @@ function UpdatePrd() {
           if (response.data.success) {
             toast.success('product updated successfully!');
             setTimeout(() => {
-                navigate("/a-dash/manproduct");
+                navigate("/s-dash/manPrd");
             }, 1000);
           } else {
             toast.error('Failed to update product.');
@@ -96,7 +96,7 @@ function UpdatePrd() {
                 </div>
                 <div className="button-group">
                     <button type="button" className="back-btn" onClick={() => navigate(-1)}>Back</button>
-                    <button type="submit" className="submit-btn">Add User</button>
+                    <button type="submit" className="submit-btn">Update Product</button>
                 </div>
             </form>
             <ToastContainer />
