@@ -112,7 +112,7 @@ export default function OrderProcess() {
 
   const validate = () => {
     const errors = {};
-    const cardRegex = /^[0-9]{16}$/; // Simple validation for 16-digit card number
+    const cardRegex = /^[0-9]|[-]{19}$/; // Simple validation for 16-digit card number
     const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY format
     const cvvRegex = /^[0-9]{3}$/; // 3-digit CVV
 
@@ -146,6 +146,18 @@ export default function OrderProcess() {
       });
       console.log("Form submitted");
     }
+  };
+
+  const handleCardNumberChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    value = value.slice(0, 16); // Limit to 16 digits
+
+    // Format as XXXX-XXXX-XXXX-XXXX
+    const formattedValue = value
+      .replace(/(\d{4})/g, "$1-")
+      .replace(/-$/, "");
+
+    setCardNumber(formattedValue);
   };
 
   return (
@@ -206,7 +218,7 @@ export default function OrderProcess() {
                 type="text"
                 placeholder="Card Number"
                 value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
+                onChange={handleCardNumberChange} // Single merged function
               />
               {errors.cardNumber && <p>{errors.cardNumber}</p>}
 
@@ -223,6 +235,7 @@ export default function OrderProcess() {
                 placeholder="CVV"
                 value={cvv}
                 onChange={(e) => setCvv(e.target.value)}
+                
               />
               {errors.cvv && <p>{errors.cvv}</p>}
 
