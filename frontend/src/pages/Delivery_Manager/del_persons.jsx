@@ -7,7 +7,7 @@ function AssignDelivery() {
   const location = useLocation();
   const navigate = useNavigate();
   const [deliveryPersons, setDeliveryPersons] = useState([]);
-  const order = location.state;
+  const order = location.state?.order;
 
   useEffect(() => {
     async function fetchorderPersons() {
@@ -16,6 +16,7 @@ function AssignDelivery() {
           "http://localhost:5000/api/delPersons"
         );
         setDeliveryPersons(response.data.delPerson);
+        console.log(order)
       } catch (err) {
         console.error("Error fetching order persons:", err);
       }

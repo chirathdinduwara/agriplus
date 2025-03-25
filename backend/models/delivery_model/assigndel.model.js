@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
-const assignedDels = mongoose.Schema({
-  owner_email: {
-    type: String,
-    required: true,
-  },
+const assignedDelsSchema = mongoose.Schema({
   owner_name: {
     type: String,
     required: true,
@@ -40,5 +36,5 @@ const assignedDels = mongoose.Schema({
   },
 });
 
-const AssignedDels = mongoose.model("AssignedDels", assignedDels);
+const AssignedDels = mongoose.model("AssignedDel", assignedDelsSchema);
 export default AssignedDels;
