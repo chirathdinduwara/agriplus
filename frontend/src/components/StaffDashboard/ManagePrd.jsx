@@ -54,51 +54,50 @@ function ManagePrd() {
           <button className="add" onClick={handleAddProduct}>
             Add Product
           </button>
-          <div className="table-container">
-          <table className="manage-table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Brand</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>Category</th>
-      <th>Image</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody className="table-container">
-    {products.map((product) => (
-      <tr key={product._id}>
-        <td>{product.prd_name}</td>
-        <td>{product.prd_brand}</td>
-        <td>{product.price}</td>
-        <td>{product.stock}</td>
-        <td>{product.category}</td>
-        <td>
-          <img src={product.img_url} width={50} alt="Product" />
-        </td>
-        <td>
-          <button
-            className="update-btn"
-            onClick={() => handleUpdateProduct(product._id)}
-          >
-            Update
-          </button>
-          <button
-            className="delete-btn"
-            onClick={() => handleDelete(product._id)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-          </div>
           
-
+          <div className="table-container">
+            <table className="manage-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Brand</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody className="table-container">
+                {products.map((product) => (
+                  <tr key={product._id}>
+                    <td>{product.prd_name}</td>
+                    <td>{product.prd_brand}</td>
+                    <td>{product.price}</td>
+                    <td>{product.stock}</td>
+                    <td>{product.category}</td>
+                    <td>
+                      <img src={product.img_url} width={50} alt="Product" />
+                    </td>
+                    <td>
+                      <button
+                        className="update-btn"
+                        onClick={() => handleUpdateProduct(product._id)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(product._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>
