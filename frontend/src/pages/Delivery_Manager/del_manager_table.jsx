@@ -80,9 +80,9 @@ const DelManagerTable = () => {
     navigate(`/maneger_edit_order/${orderId}`);
   };
 
-  const handleAssignClick = (delivery) => {
-    navigate("/assignDelivery", { state: { delivery } });
-    console.log(delivery);
+  const handleAssignClick = (order) => {
+    navigate("/assignDelivery", { state: { order } });
+    console.log(order);
   };
 
   return (

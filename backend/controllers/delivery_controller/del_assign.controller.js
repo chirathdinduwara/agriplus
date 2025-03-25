@@ -9,7 +9,7 @@ export const assignDelivery = async (req, res) => {
     total_price,
     delPersonEmail,
     delPersonName,
-    deliveryStatus
+    delStatus
   } = req.body;
 
   if (
