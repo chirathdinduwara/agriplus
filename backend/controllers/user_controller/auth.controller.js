@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Admin from "../../models/user_model/admin.model.js";
 import User from "../../models/user_model/user.model.js";
+import Staff from "../../models/user_model/staff.model.js";
 
 //customer
 export const registerUser = async (req,res) => {
@@ -166,3 +167,51 @@ export const getAdmins = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+
+//Staff
+export const staffLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const staff = await Staff.findOne({ email });
+    if (!staff) return res.status(400).json({ success: false, message: "Invalid email or password" });
+
+    const isMatch = await bcrypt.compare(password, staff.password);
+    if (!isMatch) return res.status(400).json({ success: false, message: "Invalid email or password" });
+
+    const token = jwt.sign({ id: staff._id, name: staff.full_name, email: staff.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+    res.status(200).json({ success: true, token });
+
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+}
+
+export const registerStaff = async (req,res) => {
+  const { email, full_name, phone, password } = req.body;
+
+  if (!email || !full_name || !phone || !password) {
+      return res.status(400).json({ success: false, message: "Please Provide All Fields" });
+    }
+  
+    try {
+      let userExists = await Staff.findOne({ email });
+      if (userExists) return res.status(200).json({ success: false, message: "User already exists!" });
+  
+      if (password.length < 8) {
+        return res.status(200).json({ success: false, message: "Please enter at least 8 characters as password!" });
+      }
+  
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newStaff = new Staff({ email, full_name, phone, password: hashedPassword });
+  
+      await newStaff.save();
+      res.status(201).json({ success: true, message: "User registered successfully" });
+  
+    } catch (err) {
+      console.error("Error:", err.message);
+      res.status(500).json({ success: false, message: "Server Error" });
+    }
+}
