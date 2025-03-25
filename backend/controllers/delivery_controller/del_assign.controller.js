@@ -80,7 +80,7 @@ export const updateAssignDeliveries = async (req, res) => {
 export const deleteAssignDelivery = async (req, res) => {
   const { id } = req.params;
   try {
-    await Delivery.findByIdAndDelete(id);
+    await AssignedDels.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "Delivery Deleted" });
   } catch (err) {
     res.status(500).json({ success: false, message: "Delete Failed!" });
