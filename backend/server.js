@@ -7,6 +7,7 @@ import productRoutes from "./routes/product_route/product.routes.js";
 import orderRoutes from "./routes/order_route/order.route.js";
 import specialRoutes from "./routes/special_function_route/special.routes.js";
 import delRoutes from "./routes/delivery_route/del_person.route.js";
+import deliveriRoutes from "./routes/delivery_route/del_per.routes.js";
 dotenv.config();
 
 const app = express();
@@ -19,7 +20,7 @@ app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", specialRoutes);
 app.use("/api", delRoutes);
-
+app.use("/api", deliveriRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
