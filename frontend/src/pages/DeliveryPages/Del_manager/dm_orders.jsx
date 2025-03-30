@@ -1,8 +1,43 @@
-import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useParams } from "react";
 import { FaSearch } from "react-icons/fa";
 import "../../../css/DeliveryCss/Del_manager/dm_dashboard.css";
 
 function dm_orders() {
+  const [orders, setorders] = useState([]);
+  const [delPersons, setdelPersons] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/get_all_orders"
+        ); // Get users from the backend
+        setorders(response.data.orders);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      }
+    }
+
+    fetchUsers();
+  }, []); // runs once on mount
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/deliver-person/all"
+        ); // Get users from the backend
+        setdelPersons(response.data.users);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      }
+    }
+
+    fetchUsers();
+  }, []); // runs once on mount
+
   return (
     <>
       <h2>Orders Overview</h2>
@@ -28,19 +63,33 @@ function dm_orders() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>John Doe</td>
-            <td>28</td>
-            <td>New York</td>
-            <td>John Doe</td>
-            <td>28</td>
-            <td>New York</td>
-            <td>
-              <button id="table-btn">Asign</button>
-              <button id="table-btn">Edit</button>
-              <button id="table-btn">Delete</button>
-            </td>
-          </tr>
+          {orders.map((order) => (
+            <tr key={order._id}>
+              <td>{order._id}</td>
+              <td>{order.prd_name}</td>
+              <td>{order.name}</td>
+              <td>{order.Shipping_addrs}</td>
+              <td>{order.tot_price}</td>
+              <td>
+                <select name={`select-person-${order._id}`} id="select-input">
+                  <option value="">Select Person</option>
+                  {delPersons
+                    .filter((person) => person.status == "available")
+                    .map((person) => (
+                      <option key={person._id} value={person._id}>
+                        {person.firstname}
+                      </option>
+                    ))}
+                </select>
+              </td>
+
+              <td>
+                <button id="table-btn">Asign</button>
+                <button id="table-btn">Edit</button>
+                <button id="table-btn">Delete</button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <button id="report-btn">Get Report</button>

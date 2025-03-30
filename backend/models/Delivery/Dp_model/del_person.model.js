@@ -6,7 +6,11 @@ const delPerson = mongoose.Schema(
       type: String,
       required: true,
     },
-    fullName: {
+    firstname: {
+      type: String,
+      required: true,
+    },
+    lastname: {
       type: String,
       required: true,
     },
@@ -19,12 +23,17 @@ const delPerson = mongoose.Schema(
       required: true,
     },
     vehicleNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
     password: {
       type: String,
       required: true,
+    },
+    status: {
+      type: String,
+      required: true,
+      default: "available",
     },
   },
   { timestamps: true }

@@ -21,23 +21,31 @@ function DmTracking() {
         <thead>
           <tr>
             <th id="order-id">Order ID</th>
+            <th id="order-date">Product Name</th>
+            <th id="order-date">Owner Email</th>
+            <th id="order-date">Owner Address</th>
+            <th id="order-date">Delivery Person</th>
             <th id="order-status">Status</th>
-            <th id="order-date">Date</th>
-            <th id="order-shipping">Shipping</th>
+            <th id="order-status">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr id="order-row">
             <td id="order-id-value">#10234</td>
+            <td id="order-id-value">fungus</td>
+            <td id="order-id-value">thaveesha@gmail.com</td>
+            <td id="order-id-value">Homagama</td>
+            <td id="order-id-value">Jhone@gmail.com</td>
             <td id="order-status-value">
               <span class="status-progress" id="status-shipped">
                 Shipped
               </span>
             </td>
-            <td id="order-date-value">March 29, 2025</td>
-            <td id="order-shipping-value">FedEx</td>
+            <td>
+              <button id="table-btn-delete">Delete</button>
+            </td>
           </tr>
-          <tr id="order-row">
+          {/* <tr id="order-row">
             <td id="order-id-value">#10235</td>
             <td id="order-status-value">
               <span class="status-progress" id="status-delivered">
@@ -56,7 +64,7 @@ function DmTracking() {
             </td>
             <td id="order-date-value">March 30, 2025</td>
             <td id="order-shipping-value">UPS</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
       <button id="report-btn">Get Report</button>
