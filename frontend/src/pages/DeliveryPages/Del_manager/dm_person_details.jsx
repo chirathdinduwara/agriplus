@@ -1,56 +1,39 @@
 import React from "react";
+import { FaSearch } from "react-icons/fa";
 
 function dm_person_details() {
   return (
     <>
       <div id="delivery-container">
         <h2 id="delivery-title">Delivery Person Details</h2>
+        <div id="search-div">
+          <input type="search" name="" id="search-input" />
+          <button id="Search-btn">
+            <span>Search</span>
+            <div id="icon-div">
+              <FaSearch size={15} color="white" />
+            </div>
+          </button>
+        </div>
         <table id="table">
           <thead>
             <tr>
-              <th className="delivery-id">Delivery ID</th>
-              <th className="delivery-name">Name</th>
-              <th className="delivery-contact">Contact</th>
-              <th className="delivery-location">Location</th>
-              <th className="delivery-status">Status</th>
+              <th>Email</th>
+              <th>Full Name</th>
+              <th>Address</th>
+              <th>Vehicle Number</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="delivery-id-value">#D102</td>
-              <td className="delivery-name-value">John Doe</td>
-              <td className="delivery-contact-value">+1234567890</td>
-              <td className="delivery-location-value">New York</td>
-              <td className="delivery-status-value">
-                <span className="status-progress" id="status-active">
-                  Active
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td className="delivery-id-value">#D103</td>
-              <td className="delivery-name-value">Jane Smith</td>
-              <td className="delivery-contact-value">+9876543210</td>
-              <td className="delivery-location-value">Los Angeles</td>
-              <td className="delivery-status-value">
-                <span className="status-progress" id="status-idle">
-                  Idle
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td className="delivery-id-value">#D104</td>
-              <td className="delivery-name-value">Mike Johnson</td>
-              <td className="delivery-contact-value">+1122334455</td>
-              <td className="delivery-location-value">Chicago</td>
-              <td className="delivery-status-value">
-                <span className="status-progress" id="status-busy">
-                  Busy
-                </span>
-              </td>
+              <td>#D102</td>
+              <td>John Doe</td>
+              <td>+1234567890</td>
+              <td>New York</td>
             </tr>
           </tbody>
         </table>
+        <button id="report-btn">Get Report</button>
       </div>
     </>
   );

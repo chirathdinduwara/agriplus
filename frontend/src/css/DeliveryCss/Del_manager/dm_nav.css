@@ -73,9 +73,28 @@
   text-decoration: underline;
 }
 
+#icon-name {
+  margin-left: 70px;
+}
+#name-box {
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+}
+
+#name-box h3{
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
 #nav li:last-child {
-  margin-top: 115%;
-  margin-left: 50px;
+  align-items: center;
+  margin-top: 100%;
+  width: 150px;
+}
+
+#nav li:last-child h3 {
+  color: #ffffff;
 }
 
 #nav li:last-child:hover {
@@ -83,7 +102,9 @@
 }
 
 #logout-btn {
-  padding: 12px 20px;
+  margin-top: 10px;
+  margin-left: 40px;
+  padding: 10px 18px;
   width: 120px;
   border-radius: 8px;
   border: none;

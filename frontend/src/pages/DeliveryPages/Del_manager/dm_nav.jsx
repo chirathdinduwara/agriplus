@@ -2,7 +2,6 @@ import React from "react";
 import "../../../css/DeliveryCss/Del_manager/dm_nav.css";
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/Graphics/logo.png";
-
 function DmNav() {
   return (
     <div id="sidebar">
@@ -26,6 +25,9 @@ function DmNav() {
             <Link to="dm_person_details">Delivery persons</Link>
           </li>
           <li>
+            <div id="name-box">
+              <h3>thaveesha@gmail.com</h3>
+            </div>
             <button id="logout-btn">Logout</button>
           </li>
         </ul>

@@ -157,3 +157,52 @@
 #status-processing {
   background-color: #ffc107; /* Processing - Yellow */
 }
+
+#report-btn {
+  background-color: #4c84af;
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  margin-right: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#search-div {
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  display: flex;
+  width: 35%;
+}
+
+#search-input {
+  padding: 10px;
+  margin-right: 10px;
+}
+#icon-div {
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+#Search-btn {
+  display: flex;
+  align-items: center;
+  background-color: #754caf;
+  width: 150px;
+  height: 37px;
+  font-size: 14px;
+  margin-right: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#Search-btn span {
+  align-items: center;
+  margin-left: 10px;
+}

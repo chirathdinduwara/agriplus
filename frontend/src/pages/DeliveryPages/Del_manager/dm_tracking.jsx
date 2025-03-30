@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
 import "../../../css/DeliveryCss/Del_manager/dm_dashboard.css";
 
 function DmTracking() {
@@ -7,6 +8,15 @@ function DmTracking() {
   return (
     <>
       <h2>Order Tracking</h2>
+      <div id="search-div">
+        <input type="search" name="" id="search-input" />
+        <button id="Search-btn">
+          <span>Search</span>
+          <div id="icon-div">
+            <FaSearch size={15} color="white" />
+          </div>
+        </button>
+      </div>
       <table id="table">
         <thead>
           <tr>
@@ -49,6 +59,7 @@ function DmTracking() {
           </tr>
         </tbody>
       </table>
+      <button id="report-btn">Get Report</button>
     </>
   );
 }
