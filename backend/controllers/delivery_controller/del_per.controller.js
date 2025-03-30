@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import DelPerson from "../../models/delivery_model/del_person.model";
+import DelPerson from "../../models/delivery_model/del_person.model.js";
 import AssignedDels from "../../models/delivery_model/assigndel.model.js";
 
 export const registerDelPerson = async (req, res) => {
