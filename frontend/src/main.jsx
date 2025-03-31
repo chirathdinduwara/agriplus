@@ -41,6 +41,9 @@ import Dm_orders from "./pages/DeliveryPages/Del_manager/dm_orders.jsx";
 import Dm_tracking from "./pages/DeliveryPages/Del_manager/dm_tracking.jsx";
 import Dm_person_details from "./pages/DeliveryPages/Del_manager/dm_person_details.jsx";
 
+import Dp_dashboard from "./pages/DeliveryPages/del_person/dp_dashboard.jsx";
+import Dp_deliveries from "./pages/DeliveryPages/del_person/dp_deliveries.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -199,6 +202,20 @@ const router = createBrowserRouter([
       {
         path: "dm_person_details",
         element: <Dm_person_details />,
+      },
+    ],
+  },
+  {
+    path: "dp-dashboard",
+    element: <Dp_dashboard />,
+    children: [
+      {
+        index: true,
+        element: <Dp_dashboard />,
+      },
+      {
+        path: "my-deliveries",
+        element: <Dp_deliveries />,
       },
     ],
   },

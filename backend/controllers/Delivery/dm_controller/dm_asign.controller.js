@@ -67,3 +67,54 @@ export const allAsignDelPersons = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error." });
   }
 };
+
+export const updateAsignDelPersons = async (req, res) => {
+  const { id } = req.params;
+  const {
+    product_id,
+    product_name,
+    owner_email,
+    owner_address,
+    owner_phone,
+    delPerson_email,
+    delStatus,
+  } = req.body;
+
+  try {
+    // Find the user by ID and update their details
+    const order = await AssignedDels.findByIdAndUpdate(
+      id,
+      {
+        product_id,
+        product_name,
+        owner_email,
+        owner_address,
+        owner_phone,
+        delPerson_email,
+        delStatus,
+      },
+      { new: true }
+    );
+
+    if (!order) {
+      return res
+        .status(404)
+        .json({ success: false, message: "product not found" });
+    }
+
+    res.status(200).json({ success: true, order });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const removeAsignDelPersons = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await AssignedDels.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: "Order is Deleted" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Delete Failed!" });
+  }
+};

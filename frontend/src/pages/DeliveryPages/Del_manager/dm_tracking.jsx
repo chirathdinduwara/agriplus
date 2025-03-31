@@ -62,7 +62,7 @@ function DmTracking() {
                     backgroundColor:
                       asigneddetails.delStatus === "assigned"
                         ? "#FFCCCB"
-                        : asigneddetails.delStatus === "package pickup"
+                        : asigneddetails.delStatus === "package-pickup"
                         ? "#FFFF00"
                         : asigneddetails.delStatus === "on-road"
                         ? "#ADD8E6"
