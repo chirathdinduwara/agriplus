@@ -1,9 +1,26 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useParams } from "react";
 import { FaSearch } from "react-icons/fa";
 import "../../../css/DeliveryCss/Del_manager/dm_dashboard.css";
 
 function DmTracking() {
-  const [status, setStatus] = useState("Order Placed");
+  const [asigns, setasigns] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/deliver-asign/all"
+        ); // Get users from the backend
+        setasigns(response.data.asigns);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      }
+    }
+
+    fetchUsers();
+  }, []);
 
   return (
     <>
@@ -30,41 +47,51 @@ function DmTracking() {
           </tr>
         </thead>
         <tbody>
-          <tr id="order-row">
-            <td id="order-id-value">#10234</td>
-            <td id="order-id-value">fungus</td>
-            <td id="order-id-value">thaveesha@gmail.com</td>
-            <td id="order-id-value">Homagama</td>
-            <td id="order-id-value">Jhone@gmail.com</td>
-            <td id="order-status-value">
-              <span class="status-progress" id="status-shipped">
-                Shipped
-              </span>
-            </td>
-            <td>
-              <button id="table-btn-delete">Delete</button>
-            </td>
-          </tr>
-          {/* <tr id="order-row">
-            <td id="order-id-value">#10235</td>
-            <td id="order-status-value">
-              <span class="status-progress" id="status-delivered">
-                Delivered
-              </span>
-            </td>
-            <td id="order-date-value">March 25, 2025</td>
-            <td id="order-shipping-value">DHL</td>
-          </tr>
-          <tr id="order-row">
-            <td id="order-id-value">#10236</td>
-            <td id="order-status-value">
-              <span class="status-progress" id="status-processing">
-                Processing
-              </span>
-            </td>
-            <td id="order-date-value">March 30, 2025</td>
-            <td id="order-shipping-value">UPS</td>
-          </tr> */}
+          {asigns.map((asigneddetails) => (
+            <tr id="order-row">
+              <td id="order-id-value">{asigneddetails.product_id}</td>
+              <td id="order-id-value">{asigneddetails.product_name}</td>
+              <td id="order-id-value">{asigneddetails.owner_email}</td>
+              <td id="order-id-value">{asigneddetails.owner_address}</td>
+              <td id="order-id-value">{asigneddetails.delPerson_email}</td>
+              <td id="order-status-value">
+                <span
+                  className="status-progress"
+                  id={asigneddetails.delStatus}
+                  style={{
+                    backgroundColor:
+                      asigneddetails.delStatus === "assigned"
+                        ? "#FFCCCB"
+                        : asigneddetails.delStatus === "package pickup"
+                        ? "#FFFF00"
+                        : asigneddetails.delStatus === "on-road"
+                        ? "#ADD8E6"
+                        : asigneddetails.delStatus === "completed"
+                        ? "#90EE90"
+                        : "",
+                    color: "black",
+                  }}
+                >
+                  {asigneddetails.delStatus}
+                </span>
+              </td>
+              <td>
+                <button
+                  id="table-btn-delete"
+                  disabled={asigneddetails.delStatus !== "completed"}
+                  style={{
+                    cursor:
+                      asigneddetails.delStatus === "completed"
+                        ? "pointer"
+                        : "not-allowed",
+                    opacity: asigneddetails.delStatus !== "completed" ? 0.5 : 1,
+                  }}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <button id="report-btn">Get Report</button>
