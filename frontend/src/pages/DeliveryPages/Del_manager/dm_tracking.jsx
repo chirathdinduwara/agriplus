@@ -22,6 +22,27 @@ function DmTracking() {
     fetchUsers();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      // First delete operation
+      const response1 = await axios.delete(
+        `http://localhost:5000/api/deliver-asign/delete/abc/${id}`
+      );
+      if (response1.data.success) {
+        // Second delete operation (if the first succeeds)
+        const response2 = await axios.delete(
+          `http://localhost:5000/api/remove_orders/${id}`
+        );
+        if (response2.data.success) {
+          // If both delete operations succeed, update the state
+          setasigns(asigns.filter((asign) => asign._id !== id));
+        }
+      }
+    } catch (err) {
+      console.error("Error deleting order:", err);
+    }
+  };
+
   return (
     <>
       <h2>Order Tracking</h2>
@@ -78,6 +99,7 @@ function DmTracking() {
               <td>
                 <button
                   id="table-btn-delete"
+                  onClick={() => handleDelete(asigneddetails.product_id)}
                   disabled={asigneddetails.delStatus !== "completed"}
                   style={{
                     cursor:

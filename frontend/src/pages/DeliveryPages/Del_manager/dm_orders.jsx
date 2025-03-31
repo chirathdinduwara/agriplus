@@ -87,6 +87,27 @@ function dm_orders() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      // First delete operation
+      const response1 = await axios.delete(
+        `http://localhost:5000/api/remove_orders/${id}`
+      );
+      if (response1.data.success) {
+        // Second delete operation (if the first succeeds)
+        const response2 = await axios.delete(
+          `http://localhost:5000/api/deliver-asign/delete/abc/${id}`
+        );
+        if (response2.data.success) {
+          // If both delete operations succeed, update the state
+          setorders(orders.filter((order) => order._id !== id));
+        }
+      }
+    } catch (err) {
+      console.error("Error deleting order:", err);
+    }
+  };
+
   return (
     <>
       <h2>Orders Overview</h2>
@@ -147,7 +168,9 @@ function dm_orders() {
                   Assign
                 </button>
                 <button id="table-btn">Edit</button>
-                <button id="table-btn">Delete</button>
+                <button id="table-btn" onClick={() => handleDelete(order._id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

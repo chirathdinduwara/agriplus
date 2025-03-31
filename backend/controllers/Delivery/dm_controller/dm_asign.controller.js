@@ -118,3 +118,20 @@ export const removeAsignDelPersons = async (req, res) => {
     res.status(500).json({ success: false, message: "Delete Failed!" });
   }
 };
+
+export const removeAsignDel = async (req, res) => {
+  const { product_id } = req.params; // Change to product_id
+  try {
+    const result = await AssignedDels.findOneAndDelete({ product_id }); // Use product_id in the query
+
+    if (!result) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" }); // Update the message
+    }
+
+    res.status(200).json({ success: true, message: "Product is Deleted" }); // Update the message
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Delete Failed!" });
+  }
+};
