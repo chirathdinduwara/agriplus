@@ -1,18 +1,53 @@
-import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useParams } from "react";
 import "../../../css/DeliveryCss/Del_manager/dm_dashboard.css";
 
 function dm_overview() {
+  const [orders, setorders] = useState([]);
+  const [delPersons, setdelPersons] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/get_all_orders"
+        ); // Get users from the backend
+        setorders(response.data.orders);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      }
+    }
+
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/deliver-person/all"
+        ); // Get users from the backend
+        setdelPersons(response.data.users);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      }
+    }
+
+    fetchUsers();
+  }, []);
+
   return (
     <>
       <div id="dashboard">
         <div id="overview-cards">
           <div id="card-1" class="card">
             <h2>Total Orders</h2>
-            <p>Currunt Orders - 76</p>
+            <p>Currunt Orders - {orders.length}</p>
           </div>
           <div id="card-2" class="card">
             <h2>Delivery Persons</h2>
-            <p>58 Available</p>
+            <p>{delPersons.length} Available</p>
           </div>
           <div id="card-3" class="card">
             <h2>Total Revenue</h2>

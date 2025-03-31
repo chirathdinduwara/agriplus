@@ -97,7 +97,7 @@ function dm_person_details() {
             {filteredPersons.map((person) => (
               <tr key={person._id}>
                 <td>{person.email}</td>
-                <td>{person.firstname}</td>
+                <td>{person.firstname}{" "}{person.lastname}</td>
                 <td>{person.address}</td>
                 <td>{person.vehicleNumber}</td>
               </tr>

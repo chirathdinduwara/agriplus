@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Schema Definition
 const assignedDelsSchema = mongoose.Schema({
   product_id: {
     type: String,
@@ -9,7 +10,8 @@ const assignedDelsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  owener_email: {
+  owner_email: {
+    // Fixed typo here
     type: String,
     required: true,
   },
@@ -19,7 +21,7 @@ const assignedDelsSchema = mongoose.Schema({
   },
   owner_phone: {
     type: String,
-    required: true,
+    default: "Pending",
   },
   delPerson_email: {
     type: String,
