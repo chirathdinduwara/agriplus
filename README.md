@@ -15,7 +15,7 @@ AgriPlus is a web-based platform designed to simplify the process of purchasing 
   - Location
   - Soil data
 
-### 🔐 Admin Panel
+###  Admin Panel 🔐
 #### User Manager
 - Manage all user and manager accounts.
 - Generate user activity and management reports.
