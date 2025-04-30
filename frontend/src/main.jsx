@@ -22,28 +22,27 @@ import StaffDashboard from "./pages/Dashboards/StaffDashboard.jsx";
 import ManagePrd from "./components/StaffDashboard/ManagePrd.jsx";
 import AddPrd from "./components/StaffDashboard/AddPrd.jsx";
 import UpdatePrd from "./components/StaffDashboard/UpdatePrd.jsx";
-import Product from "./components/HomePage/Product.jsx";
 import UserProfile from "./components/User_Manager/UserProfile.jsx";
 import UserDashboard from "./components/User_Manager/UserDashboard.jsx";
 import SmartFarming from "./components/User_Manager/SmartFarming.jsx";
 import Order from "./components/HomePage/Order_process.jsx";
 import AddFarmingDetails from "./components/SpecialFunction/AddFarmingDetails.jsx";
 import SmartAssist from "./components/SpecialFunction/SmartAssist.jsx";
-import Delmanager from "./pages/Delivery_Manager/del_manager_dash.jsx";
 import OrderManager from "./pages/Order_Manager/order_manager_dash.jsx";
 import EditFarmingDetails from "./components/SpecialFunction/EditFarmingDetails.jsx";
-import EditOrder from "./pages/Delivery_Manager/update_table.jsx";
 import StaffLogin from "./pages/LoginPages/StaffLogin.jsx";
-import AssignDelivery from "./pages/Delivery_Manager/del_persons.jsx";
-import DelPerDashboard_main from "./pages/Delivery_Manager/DeliverPerson_Dashboard/DelPerDashboard_main.jsx";
-import DelPerDashboard from "./pages/Delivery_Manager/DeliverPerson_Dashboard/DelPerDashboard.jsx";
-import MarkProgress from "./pages/Delivery_Manager/DeliverPerson_Dashboard/MarkProgress.jsx";
-import Deliveries from "./pages/Delivery_Manager/DeliverPerson_Dashboard/Deliveries.jsx";
-import DelPerLogin from "./pages/LoginPages/DelPersonLogin.jsx";
-import TrackDels from "./pages/Delivery_Manager/TrackDeliveries.jsx";
 import ManageStaff from "./components/AdminDashboard/ManageStaff.jsx";
 import AddStaff from "./components/AdminDashboard/AddStaff.jsx";
 import UpdateStaff from "./components/AdminDashboard/UpdateStaff.jsx";
+
+import Dm_dashboard from "./pages/DeliveryPages/Del_manager/dm_dashboard.jsx";
+import Dm_overview from "./pages/DeliveryPages/Del_manager/dm_overview.jsx";
+import Dm_orders from "./pages/DeliveryPages/Del_manager/dm_orders.jsx";
+import Dm_tracking from "./pages/DeliveryPages/Del_manager/dm_tracking.jsx";
+import Dm_person_details from "./pages/DeliveryPages/Del_manager/dm_person_details.jsx";
+
+import Dp_dashboard from "./pages/DeliveryPages/del_person/dp_dashboard.jsx";
+import Dp_deliveries from "./pages/DeliveryPages/del_person/dp_deliveries.jsx";
 
 const router = createBrowserRouter([
   {
@@ -121,20 +120,8 @@ const router = createBrowserRouter([
     element: <UserSignup />,
   },
   {
-    path: "del_manager",
-    element: <Delmanager />,
-  },
-  {
-    path: "assignDelivery",
-    element: <AssignDelivery />,
-  },
-  {
     path: "order_manager",
     element: <OrderManager />,
-  },
-  {
-    path: "maneger_edit_order/:orderId",
-    element: <EditOrder />,
   },
   {
     path: "a-dash",
@@ -158,16 +145,16 @@ const router = createBrowserRouter([
       },
       {
         path: "manStaff",
-        element: <ManageStaff />
+        element: <ManageStaff />,
       },
       {
-        path: 'addStaff',
-        element: <AddStaff />
+        path: "addStaff",
+        element: <AddStaff />,
       },
       {
         path: "updateStaff/:userId",
         element: <UpdateStaff />,
-      }
+      },
     ],
   },
   {
@@ -193,30 +180,44 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "delPer-dash",
-    element: <DelPerDashboard_main />,
+    path: "dm-dashboard",
+    element: <Dm_dashboard />,
     children: [
       {
         index: true,
-        element: <DelPerDashboard />,
+        element: <Dm_overview />,
       },
       {
-        path: "manADeliveries",
-        element: <Deliveries />,
+        path: "dm_overview",
+        element: <Dm_overview />,
       },
       {
-        path: "markProgress",
-        element: <MarkProgress />,
+        path: "dm_orders",
+        element: <Dm_orders />,
+      },
+      {
+        path: "dm_tracking",
+        element: <Dm_tracking />,
+      },
+      {
+        path: "dm_person_details",
+        element: <Dm_person_details />,
       },
     ],
   },
   {
-    path: "del_person_login",
-    element: <DelPerLogin />,
-  },
-  {
-    path: "track_delivery",
-    element: <TrackDels />,
+    path: "dp-dashboard",
+    element: <Dp_dashboard />,
+    children: [
+      {
+        index: true,
+        element: <Dp_dashboard />,
+      },
+      {
+        path: "my-deliveries",
+        element: <Dp_deliveries />,
+      },
+    ],
   },
 ]);
 

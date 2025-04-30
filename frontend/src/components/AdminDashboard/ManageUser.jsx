@@ -8,7 +8,7 @@ import React, { useEffect, useState, useParams } from 'react';
 function ManageUser() {
     const [users, setUsers] = useState([]);
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
   // Fetch all users 
   useEffect(() => {
     async function fetchUsers() {
