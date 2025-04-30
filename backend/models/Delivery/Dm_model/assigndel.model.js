@@ -1,27 +1,29 @@
 import mongoose from "mongoose";
 
+// Schema Definition
 const assignedDelsSchema = mongoose.Schema({
-  owner_name: {
+  product_id: {
     type: String,
     required: true,
   },
-  owner_addrs: {
+  product_name: {
     type: String,
     required: true,
   },
-  owner_product: {
+  owner_email: {
+    // Fixed typo here
     type: String,
     required: true,
   },
-  total_price: {
+  owner_address: {
     type: String,
     required: true,
   },
-  delPersonEmail: {
+  owner_phone: {
     type: String,
-    required: true,
+    default: "Pending",
   },
-  delPersonName: {
+  delPerson_email: {
     type: String,
     required: true,
   },
