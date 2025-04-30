@@ -1,6 +1,5 @@
 import React from "react";
 
-import "../../css/Delivery_Manager/del_manager_dash.css";
 
 const order_manager_sidebar = () => {
   return (

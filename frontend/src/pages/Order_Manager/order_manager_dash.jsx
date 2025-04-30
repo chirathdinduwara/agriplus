@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "./order_manager_sidebar";
 import TableData from "./order_manager_table";
-import "../../css/Delivery_Manager/del_manager_dash.css";
 
 // Dummy data for orders (Replace this with actual data fetching)
 const ordersData = [
