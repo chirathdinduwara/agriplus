@@ -51,5 +51,5 @@ AgriPlus is a web-based platform designed to simplify the process of purchasing 
 - **Database:** MySQL / MongoDB / PostgreSQL
 - **APIs:** Weather API (e.g., OpenWeather), Location Services
 
-## 📂 Folder Structure (Sample)
+
 
