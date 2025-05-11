@@ -1,0 +1,78 @@
+/* Profile container */
+.profile-container {
+    padding: 20px;
+    border-radius: 8px;
+    width: 600px;
+    margin: 0 auto; /* Horizontally centers the container */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the container is centered vertically */
+}
+
+/* Profile image container */
+.profile-image-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Profile Icon */
+.profile-icon {
+    width: 200px; /* Adjusted size for profile picture */
+    height: 200px;
+    border-radius: 50%;
+    background-color: #3498db; /* Blue circle background */
+    display: inline-block;
+    margin-right: 15px;
+    position: relative;
+}
+
+/* Adding the icon to profile detail */
+.profile-detail .profile-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px; /* Adjusted size for inner circle */
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Centers the icon */
+}
+
+/* Title styling */
+.profile-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Individual profile detail */
+.profile-detail {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: #555;
+    width: 100%; /* Ensures the details take up full width */
+}
+
+/* Label styling */
+.profile-label {
+    font-weight: 600;
+    color: #2c3e50;
+    flex: 1; /* Makes sure the label takes up the available space */
+}
+
+/* Info styling */
+.profile-info {
+    color: #7f8c8d;
+    font-style: italic;
+    flex: 2; /* Makes sure the info has more space than the label */
+}

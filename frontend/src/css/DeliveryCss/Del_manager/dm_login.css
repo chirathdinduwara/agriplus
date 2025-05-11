@@ -1,0 +1,120 @@
+/* Main container */
+.delman-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2rem;
+  color: white;
+  font-family: "Outfit", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.delman-login::before {
+  content: "";
+  position: absolute;
+  top: 1;
+  left: 0;
+  width: 1550px;
+  height: 100vh;
+  background-image: url("../../../assets/images/graphics/delivery.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: scaleX(1);
+  z-index: -1;
+  filter: brightness(0.3) blur(2px);
+
+}
+
+/* Left-side image */
+.login-graphic {
+  width: 45%;
+  max-width: 500px;
+  border-radius: 16px;
+  margin-right: 1rem;
+}
+
+/* Right form wrapper */
+.delman-login-form {
+  background-color: rgba(13, 30, 46, 0.95);
+  padding: 4.8rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 500px;
+  z-index: 1;
+}
+
+.delman-login-form h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Input fields */
+.delman-input {
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid #6d6dfb;
+  background-color: transparent;
+  padding: 10px;
+  color: white;
+  font-size: 1rem;
+}
+
+.delman-input:focus {
+  outline: none;
+  border-color: #0fa962;
+  box-shadow: 0 0 5px rgba(15, 169, 98, 0.5);
+}
+
+/* Button */
+.delman-login-btn {
+  height: 45px;
+  background-color: #0fa962;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delman-login-btn:hover {
+  background-color: #0c8c52;
+}
+
+/* Link & text */
+.delman-redirect {
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.delman-link {
+  color: #0fa962;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.delman-link:hover {
+  text-decoration: underline;
+}
+
+/* Autofill fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: #1e2a38 !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0px 1000px #1e2a38 inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

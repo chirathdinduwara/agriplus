@@ -68,6 +68,17 @@ export const allAsignDelPersons = async (req, res) => {
   }
 };
 
+export const getAsignDelByUserId = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const asigns = await AssignedDels.find({ userId }); // assuming your schema has a `userId` field
+    res.status(200).json({ success: true, asigns });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server error." });
+  }
+};
+
 export const updateAsignDelPersons = async (req, res) => {
   const { id } = req.params;
   const {
