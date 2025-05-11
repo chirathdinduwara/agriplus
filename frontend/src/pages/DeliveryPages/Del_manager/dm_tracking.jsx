@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState, useParams } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import { FaSearch } from "react-icons/fa";
 import "../../../css/DeliveryCss/Del_manager/dm_dashboard.css";
 
@@ -23,23 +24,33 @@ function DmTracking() {
   }, []);
 
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+    if (!confirmDelete) return;
+
     try {
-      // First delete operation
       const response1 = await axios.delete(
         `http://localhost:5000/api/deliver-asign/delete/abc/${id}`
       );
+
       if (response1.data.success) {
-        // Second delete operation (if the first succeeds)
         const response2 = await axios.delete(
           `http://localhost:5000/api/remove_orders/${id}`
         );
+
         if (response2.data.success) {
-          // If both delete operations succeed, update the state
           setasigns(asigns.filter((asign) => asign._id !== id));
+          toast.success("Order deleted successfully!");
+        } else {
+          toast.error("Failed to delete order from remove_orders.");
         }
+      } else {
+        toast.error("Failed to delete order from deliver-asign.");
       }
     } catch (err) {
       console.error("Error deleting order:", err);
+      toast.error("An error occurred while deleting the order.");
     }
   };
 
@@ -117,6 +128,7 @@ function DmTracking() {
         </tbody>
       </table>
       <button id="report-btn">Get Report</button>
+      <ToastContainer />
     </>
   );
 }

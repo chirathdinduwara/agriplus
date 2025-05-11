@@ -88,23 +88,36 @@ function dm_orders() {
   };
 
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this order?"
+    );
+    if (!confirmDelete) return;
+
     try {
       // First delete operation
       const response1 = await axios.delete(
         `http://localhost:5000/api/remove_orders/${id}`
       );
+
       if (response1.data.success) {
-        // Second delete operation (if the first succeeds)
+        // Second delete operation
         const response2 = await axios.delete(
           `http://localhost:5000/api/deliver-asign/delete/abc/${id}`
         );
+
         if (response2.data.success) {
-          // If both delete operations succeed, update the state
+          // Update state if both succeed
           setorders(orders.filter((order) => order._id !== id));
+          toast.success("Order deleted successfully!");
+        } else {
+          toast.error("Failed to delete from deliver-asign.");
         }
+      } else {
+        toast.error("Failed to delete from remove_orders.");
       }
     } catch (err) {
       console.error("Error deleting order:", err);
+      toast.error("An error occurred while deleting the order.");
     }
   };
 
