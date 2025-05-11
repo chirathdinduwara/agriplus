@@ -24,42 +24,61 @@ function Store() {
         fetchProducts();
     }, []); 
 
+    const filteredProducts = products.filter((product) => {
+        // Filter by search term (name, brand, category)
+        const matchesSearch = product.prd_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                              product.prd_brand.toLowerCase().includes(searchTerm.toLowerCase());
+        
+        // Filter by category
+        const matchesCategory = category === 'all' || product.cetegory === category;
+
+        return matchesSearch && matchesCategory;
+    });
+
     const handleItemClick = (product) => {
         navigate(`/order/${product._id}`, { state: product });
     };
 
     return (
-        <>
-            <div className="store">
-                <div className="store-head">
-                    Store
+        <div className="store">
+            <div className="store-head">
+                Store
+            </div>
+            <div className='store-body'>
+                <div className="store-options">
+                    <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        value={searchTerm} 
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                        <option value="all">All Categories</option>
+                        <option value="Pesticides">Pesticides</option>
+                        <option value="Herbicides">Herbicides</option>
+                        <option value="Fertilizer">Fertilizers</option>
+                    </select>
                 </div>
-                <div className='store-body'>
-                    <div className="store-options">
-                        <input 
-                            type="text" 
-                            placeholder="Search..." 
-                            value={searchTerm} 
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                            <option value="all">All Categories</option>
-                            <option value="pesticides">Pesticides</option>
-                            <option value="herbicides">Herbicides</option>
-                            <option value="fertilizers">Fertilizers</option>
-                        </select>
-                    </div>
-                    <div className="store-items">
-                        {products.map((product) => (
-                            <div id={product._id} onClick={() => handleItemClick(product)}  style={{ cursor: "pointer" }}>
-                                <StoreItem  prd_name={product.prd_name} price={product.price} img_url={product.img_url} stock={product.stock} prd_brand={product.prd_brand}  category={product.category} />
+                <div className="store-items">
+                    {filteredProducts.length === 0 ? (
+                        <p>No products found.</p>
+                    ) : (
+                        filteredProducts.map((product) => (
+                            <div id={product._id} onClick={() => handleItemClick(product)} style={{ cursor: "pointer" }} key={product._id}>
+                                <StoreItem 
+                                    prd_name={product.prd_name} 
+                                    price={product.price} 
+                                    img_url={product.img_url} 
+                                    stock={product.stock} 
+                                    prd_brand={product.prd_brand}  
+                                    category={product.category} 
+                                />
                             </div>
-                        ))}
-                        
-                    </div>
+                        ))
+                    )}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
