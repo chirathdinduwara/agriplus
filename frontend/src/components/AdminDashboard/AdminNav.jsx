@@ -43,13 +43,11 @@ function AdminNav() {
                     <li><Link className='text-none a-nav-link' to="/a-dash">Dashboard</Link></li>
                     <li><Link className='text-none a-nav-link' to="manStaff">Manage Staff</Link></li>
                     <li><Link className='text-none a-nav-link' to="manUser">Manage Users</Link></li>
-                    <li><Link className='text-none a-nav-link' to="payments">Payments</Link></li>
-                    <li><Link className='text-none a-nav-link' to="payments">Profile</Link></li>
                 </ul>
 
                 <div className="nav-a">
                     
-                    <button className='login-btn' onClick={logout} type="submit">Log Out</button>
+                    <button id='login-btn' onClick={logout} type="submit">Log Out</button>
                 </div>
             </nav>
         </>

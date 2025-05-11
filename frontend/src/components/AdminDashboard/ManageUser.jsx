@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import React, { useEffect, useState, useParams } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 function ManageUser() {
     const [users, setUsers] = useState([]);
@@ -24,17 +25,22 @@ function ManageUser() {
   }, []); // runs once on mount
 
   const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(`http://localhost:5000/api/user/${id}`);
-      if (response.data.success) {
-        // Remove the deleted user from the users state to update the UI
-        setUsers(users.filter(user => user._id !== id));
-      }
-    } catch (err) {
-      console.error("Error deleting user:", err);
-    }
-  };
+  const confirmed = window.confirm("Are you sure you want to delete this user?");
+  if (!confirmed) return;
 
+  try {
+    const response = await axios.delete(`http://localhost:5000/api/user/${id}`);
+    if (response.data.success) {
+      setUsers(users.filter(user => user._id !== id));
+      toast.success("User deleted successfully!");
+    } else {
+      toast.error("Failed to delete the user.");
+    }
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    toast.error("An error occurred while deleting the user.");
+  }
+};
   function handleAddUser() {
     navigate('/a-dash/addUser')
   }
@@ -79,7 +85,7 @@ function ManageUser() {
                     </div>
                     
                 </div>
-
+              <ToastContainer />
             </div>
         </>
     );
