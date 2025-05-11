@@ -2,6 +2,7 @@ import FarmingDetails from '../../models/special_function_model/farmingDetails.m
 import dotenv from "dotenv";
 import axios from 'axios';
 import FarmingTasks from '../../models/special_function_model/Tasks.model.js';
+import Product from '../../models/product_model/product.model.js';
 dotenv.config();
 
 const API_KEY = process.env.API_KEY;
@@ -127,9 +128,6 @@ export const createTasks = async (req,res) => {
 export const getTask = async (req, res) => {
   const { crop_name, location } = req.query;
 
-  console.log("Received Crop Name:", crop_name);
-  console.log("Received Location:", location);
-
   try {
     const detail = await FarmingTasks.findOne({
       crop_name: crop_name,
@@ -143,5 +141,80 @@ export const getTask = async (req, res) => {
     res.status(200).json({ success: true, tasks: detail.tasks });
   } catch (err) {
     res.status(500).json({ success: false, message: "Server Error", error: err.message });
+  }
+};
+
+
+
+const extractKeywordsUsingGemini = async (taskList) => {
+  const allTasksText = taskList.join(" ");
+
+  const prompt = `Extract only [Fertilizer, Pesticides, Herbicides] from the following text:\n\n${allTasksText}\n\nOnly return the keywords separated by commas`;
+
+  try {
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        contents: [
+          {
+            parts: [{ text: prompt }]
+          }
+        ]
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    );
+
+    const content = response.data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const keywords = content.split(',').map(word => word.trim().toLowerCase());
+    return keywords;
+
+  } catch (error) {
+    console.error("Error using Gemini:", error.response?.data || error.message);
+    return [];
+  }
+};
+
+
+
+export const getProductsByKeywords = async (req, res) => {
+  const { crop_name, location, selectedPeriod } = req.query;
+
+  try {
+    const taskDetails = await FarmingTasks.findOne({ crop_name, location });
+
+    if (!taskDetails) {
+      return res.status(404).json({ success: false, message: 'No tasks found' });
+    }
+
+    const selectedTasks = taskDetails.tasks.filter(task => task.period === selectedPeriod);
+
+    if (selectedTasks.length === 0) {
+      return res.status(404).json({ success: false, message: 'No tasks found for the selected period' });
+    }
+
+
+    const keywords = (
+       await extractKeywordsUsingGemini(selectedTasks.flatMap(task => task.task_list))
+       ).map(word => word.charAt(0).toUpperCase() + word.slice(1));
+
+
+
+    const matchedProducts = await Product.find({
+      cetegory: { $in: keywords }  
+    });
+
+    res.status(200).json({
+      success: true,
+      keywords: keywords,
+      matchedProducts: matchedProducts
+    });
+
+  } catch (err) {
+    console.error("Error in getProductsByKeywords:", err);
+    res.status(500).json({ success: false, message: 'Server Error', error: err.message });
   }
 };
