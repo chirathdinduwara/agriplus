@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from 'jwt-decode';
 import { IoTrashBinOutline } from "react-icons/io5";
 import { MdOutlineModeEdit } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function SmartFarming() {
@@ -55,16 +56,23 @@ function SmartFarming() {
     };
     
     const handleDelete = async (id) => {
+      const confirmDelete = window.confirm("Are you sure you want to delete this detail?");
+      if (!confirmDelete) return;
+
       try {
         const response = await axios.delete(`http://localhost:5000/api/detail/${id}`);
         if (response.data.success) {
-
-          setDetails(details.filter(detail => detail._id !== id));
-        }
+        setDetails(details.filter(detail => detail._id !== id));
+        toast.success("Detail deleted successfully!");
+      } else {
+        toast.error("Failed to delete the detail.");
+      }
       } catch (err) {
         console.error("Error deleting detail:", err);
+        toast.error("An error occurred while deleting.");
       }
     };
+
 
     const handleUpdateDetail = (dId) => {
       navigate(`/profile/editDetails/${dId}`);
@@ -83,22 +91,17 @@ function SmartFarming() {
                         crop_name={detail.crop_name} 
                         area={detail.area} 
                         location={detail.location} 
-                        
                       />
                     </div>
                     <button onClick={() => handleUpdateDetail(detail._id)} className="add-btn btn-anime">
                     <MdOutlineModeEdit />
                       </button>
                       <button onClick={() => handleDelete(detail._id)} className="del-btn btn-anime">
-                        
                         <IoTrashBinOutline />
                       </button>
                     </div>
-                    
-                    
-    ))}
-</div>
-
+                  ))}
+                </div>
             </div>
         </>
     );
