@@ -91,20 +91,29 @@ function UserNav() {
               <GoPackage size={30} />
               Track Orders
             </Link>
+          </li>
+
+          <li className="nav-list-item">
             <Link className="list_none" to="userTracking">
               {" "}
               <GoPackage size={30} />
               Track Orders
             </Link>
+          </li>
 
+          <li className="nav-list-item">
             <Link className="list_none" to="GetWeather">
               {" "}
               <WiNightAltCloudyHigh size={30} /> Get Weather
             </Link>
+          </li>
+
+          <li className="nav-list-item">
             <Link className="list_none" to="SmartAssit">
               <GoChevronRight />
             </Link>
           </li>
+
           <li className="nav-list-item">
             <Link className="list_none" to="/">
               {" "}
