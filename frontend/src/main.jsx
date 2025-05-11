@@ -44,14 +44,23 @@ import Dm_person_details from "./pages/DeliveryPages/Del_manager/dm_person_detai
 import Dp_dashboard from "./pages/DeliveryPages/del_person/dp_dashboard.jsx";
 import Dp_deliveries from "./pages/DeliveryPages/del_person/dp_deliveries.jsx";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2e3a34034f0b9a75dbdbf9d47ac568bab74b1c41
 import DelManLogin from "./pages/LoginPages/DelManLogin.jsx";
 import DelPerLogin from "./pages/LoginPages/DelPersonLogin.jsx";
 import Dp_profile from "./pages/DeliveryPages/del_person/dp_profile.jsx";
 import UserTracking from "./components/User_Manager/UserTrak.jsx";
+<<<<<<< HEAD
 =======
 import GetWeather from "./components/SpecialFunction/GetWeather.jsx";
 
 >>>>>>> master
+=======
+import GetWeather from "./components/SpecialFunction/GetWeather.jsx";
+
+>>>>>>> 2e3a34034f0b9a75dbdbf9d47ac568bab74b1c41
 const router = createBrowserRouter([
   {
     path: "/",
@@ -102,6 +111,7 @@ const router = createBrowserRouter([
       },
       {
 <<<<<<< HEAD
+<<<<<<< HEAD
         path: "userTracking",
         element: <UserTracking />,
       },
@@ -110,6 +120,14 @@ const router = createBrowserRouter([
         element: <GetWeather />
       }
 >>>>>>> master
+=======
+        path: "userTracking",
+        element: <UserTracking />,
+      },
+        path: 'GetWeather',
+        element: <GetWeather />
+      }
+>>>>>>> 2e3a34034f0b9a75dbdbf9d47ac568bab74b1c41
     ],
   },
   {

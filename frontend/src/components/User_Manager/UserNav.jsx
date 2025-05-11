@@ -70,17 +70,25 @@ function UserNav() {
                     </li>
                     <li className="nav-list-item">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <Link className="list_none" to='userTracking'> <GoPackage size={30}/>Track Orders</Link>
 =======
+=======
+                        <Link className="list_none" to='userTracking'> <GoPackage size={30}/>Track Orders</Link>
+
+>>>>>>> 2e3a34034f0b9a75dbdbf9d47ac568bab74b1c41
                         <Link className="list_none" to='GetWeather'> <WiNightAltCloudyHigh size={30}/> Get Weather</Link>
                         <Link className="list_none" to='SmartAssit'><GoChevronRight /></Link> 
                     </li>
                     <li className="nav-list-item">
+<<<<<<< HEAD
                         <Link className="list_none" to='TrackOrders'> <GoPackage size={30}/>Track Orders</Link>
 >>>>>>> master
                         <Link className="list_none" to='TrackOrders'><GoChevronRight /></Link> 
                     </li>
                     <li className="nav-list-item">
+=======
+>>>>>>> 2e3a34034f0b9a75dbdbf9d47ac568bab74b1c41
                         <Link className="list_none" to='/'> <GoHome  size={30}/>Back Home</Link>
                         <Link className="list_none" to='/'><GoChevronRight /></Link> 
                     </li>
