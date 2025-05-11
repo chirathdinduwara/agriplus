@@ -1,24 +1,47 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import "../../css/HomePage/UserTracking.css"; // CSS file
+import { jwtDecode } from "jwt-decode";
+import "../../css/HomePage/UserTracking.css";
 
 function UserTracking() {
   const [asigns, setAsigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { userId } = useParams();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState("");
 
+  // Get user ID from token on mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        setUserId(decodedToken.name);
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.error("Invalid token:", err);
+        setIsLoggedIn(false);
+      }
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  // Debug: Log userId when it changes
+  useEffect(() => {
+    if (userId) console.log("User ID:", userId);
+  }, [userId]);
+
+  // Fetch assigned deliveries
   useEffect(() => {
     if (!userId) return;
 
     const fetchAssignedDeliveries = async () => {
       setLoading(true);
       setError(null);
-
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/assigned-dels/${userId}`
+          `http://localhost:5000/api/assigned-dels-name/${userId}`
         );
         setAsigns(response.data?.asigns || []);
       } catch (err) {
@@ -32,13 +55,8 @@ function UserTracking() {
     fetchAssignedDeliveries();
   }, [userId]);
 
-  if (loading) {
-    return <div className="tracking-loading">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="tracking-error">{error}</div>;
-  }
+  if (loading) return <div className="tracking-loading">Loading...</div>;
+  if (error) return <div className="tracking-error">{error}</div>;
 
   return (
     <div className="tracking-container">
@@ -48,16 +66,16 @@ function UserTracking() {
       ) : (
         <div className="tracking-table">
           <div className="tracking-header">
-            <span>Order ID</span>
+            <span>Order Name</span>
             <span>Status</span>
             <span>Assigned To</span>
             <span>Date</span>
           </div>
           {asigns.map((item) => (
             <div key={item._id} className="tracking-row">
-              <span>{item.orderId}</span>
-              <span>{item.status}</span>
-              <span>{item.assignedTo}</span>
+              <span>{item.product_name}</span>
+              <span>{item.delStatus}</span>
+              <span>{item.delPerson_email}</span>
               <span>{new Date(item.createdAt).toLocaleDateString()}</span>
             </div>
           ))}
