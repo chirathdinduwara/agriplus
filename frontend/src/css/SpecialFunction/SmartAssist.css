@@ -222,7 +222,7 @@
     margin-top: 40px;
     display: flex;
     flex-wrap: wrap; /* Allows wrapping to next line */
-    justify-content: space-between; /* Distribute items with space between */
+ 
     gap: 20px; /* Space between items */
     padding: 0 20px;
 }
