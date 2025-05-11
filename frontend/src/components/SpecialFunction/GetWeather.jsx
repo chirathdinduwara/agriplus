@@ -34,26 +34,45 @@ function GetWeather() {
     }
   };
 
+  console.log(weatherList)
+
   const generatePDF = () => {
   const doc = new jsPDF();
-
   doc.setFontSize(16);
   doc.text(`16-Day Weather Forecast for ${city}`, 14, 15);
 
-  const columns = ["Day", "Description", "Temperature"];
-  const rows = weatherList.map((day, index) => [
-    `Day ${index + 1}`,
-    day.weather[0].description,
-    `${day.temp.day}°C`
-  ]);
+  const columns = [
+    "Date",
+    "Weather",
+    "Temp (Day/Min/Max)",
+    "Feels Like (Day)",
+    "Humidity",
+    "Rain (mm)",
+    "Wind (km/h)",
+    "Clouds (%)"
+  ];
+
+  const rows = weatherList.map((day) => {
+    const date = new Date(day.dt * 1000).toLocaleDateString();
+    const description = day.weather[0].description;
+    const temp = `${day.temp.day}° / ${day.temp.min}° / ${day.temp.max}°`;
+    const feels = `${day.feels_like.day}°`;
+    const humidity = `${day.humidity}%`;
+    const rain = day.rain ? `${day.rain} mm` : "0 mm";
+    const wind = `${day.speed} km/h`;
+    const clouds = `${day.clouds}%`;
+
+    return [date, description, temp, feels, humidity, rain, wind, clouds];
+  });
 
   autoTable(doc, {
     startY: 25,
     head: [columns],
     body: rows,
-    styles: { fontSize: 11 },
-    headStyles: { fillColor: [0, 123, 255] },
-    alternateRowStyles: { fillColor: [240, 240, 255] }
+    styles: { fontSize: 9 },
+    headStyles: { fillColor: [0, 123, 255], textColor: 255 },
+    alternateRowStyles: { fillColor: [245, 245, 255] },
+    margin: { top: 20 }
   });
 
   doc.save(`${city}_weather_forecast.pdf`);
