@@ -78,7 +78,6 @@ function UserNav() {
           </li>
           <li className="nav-list-item">
             <Link className="list_none" to="SmartAssit">
-              {" "}
               <GoCodeOfConduct size={30} /> Smart Farming
             </Link>
             <Link className="list_none" to="SmartAssit">
@@ -87,36 +86,25 @@ function UserNav() {
           </li>
           <li className="nav-list-item">
             <Link className="list_none" to="userTracking">
-              {" "}
               <GoPackage size={30} />
               Track Orders
             </Link>
-          </li>
-
-          <li className="nav-list-item">
             <Link className="list_none" to="userTracking">
-              {" "}
-              <GoPackage size={30} />
-              Track Orders
+              <GoChevronRight />
             </Link>
           </li>
 
           <li className="nav-list-item">
             <Link className="list_none" to="GetWeather">
-              {" "}
               <WiNightAltCloudyHigh size={30} /> Get Weather
             </Link>
-          </li>
-
-          <li className="nav-list-item">
-            <Link className="list_none" to="SmartAssit">
+            <Link className="list_none" to="GetWeather">
               <GoChevronRight />
             </Link>
           </li>
 
           <li className="nav-list-item">
             <Link className="list_none" to="/">
-              {" "}
               <GoHome size={30} />
               Back Home
             </Link>
@@ -126,14 +114,12 @@ function UserNav() {
           </li>
           <li className="nav-list-item" style={{ cursor: "pointer" }}>
             <div className="list_none" onClick={logout}>
-              {" "}
               <GoReply size={30} />
               Log Out
             </div>
           </li>
           <li className="nav-list-item">
             <div className="list_none">
-              {" "}
               <img src={logo} style={{ width: "100px" }} alt="" />{" "}
             </div>
           </li>
