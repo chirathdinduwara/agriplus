@@ -1,5 +1,5 @@
 import express from "express";
-import { allDetails, createDetails, createTasks, getDetail, getTask, getWeather, removeDetail, updateDetail } from "../../controllers/special_function_controller/SpecialFunction.contoller.js";
+import { allDetails, createDetails, createTasks, getDetail, getProductsByKeywords, getTask, getWeather, removeDetail, updateDetail } from "../../controllers/special_function_controller/SpecialFunction.contoller.js";
 
 
 const router = express.Router();
@@ -14,5 +14,6 @@ router.get('/weather/:city', getWeather);
 
 router.post('/createTasks', createTasks);
 router.get('/tasks', getTask);
+router.get('/productRecomend', getProductsByKeywords);
 
 export default router;
