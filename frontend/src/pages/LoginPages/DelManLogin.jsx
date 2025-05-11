@@ -1,8 +1,9 @@
-import "../../css/User_Management/login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import "../../css/DeliveryCss/Del_manager/dm_login.css";
+import img from "../../assets/images/graphics/delivery.jpg";
 
 function DelManLogin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -11,7 +12,7 @@ function DelManLogin() {
   const login = async (userData) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/delManlogin`,
+        `http://localhost:5000/api/deliverManager/login`,
         userData
       );
       if (response.data.token) {
@@ -38,7 +39,7 @@ function DelManLogin() {
       toast.success("Login Successful!");
       localStorage.setItem("token", data.token);
       setTimeout(() => {
-        navigate("/delMan-dash"); // Redirect after login
+        navigate("/dm-dashboard"); // Redirect after login
       }, 1000);
     } else {
       toast.error(
@@ -49,43 +50,42 @@ function DelManLogin() {
 
   return (
     <>
-      <div className="login">
+      <div className="delman-login">
         <img
-          className="r-log"
-          src="../src/assets/images/graphics/login.svg"
+          className="login-graphic"
+          src={img}
           alt=""
         />
-        <div className="l-log">
-          <form className="log-in" onSubmit={handleLogin}>
-            <h1 className="log-head">Log-In</h1>
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-              value={formData.email}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={formData.password}
-              required
-            />
-            <button className="login-btn2" type="submit">
-              Login
-            </button>
-
-            <p>
-              ⬅{" "}
-              <Link className="link" to="/">
-                Home
-              </Link>
-            </p>
-          </form>
-        </div>
+        <form className="delman-login-form" onSubmit={handleLogin}>
+          <h1>Delivery Manager Login</h1>
+          <input
+            type="email"
+            className="delman-input"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            className="delman-input"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <button className="delman-login-btn" type="submit">
+            Login
+          </button>
+          <p className="delman-redirect">
+            ⬅{" "}
+            <Link className="delman-link" to="/">
+              Home
+            </Link>
+          </p>
+        </form>
         <ToastContainer />
       </div>
     </>

@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../../css/DeliveryCss/Del_manager/dm_nav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../../assets/Graphics/logo.png";
+import { jwtDecode } from "jwt-decode";
 function DmNav() {
+  const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/dm-login");
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true); // User is logged in
+
+      const decodedToken = jwtDecode(token);
+      setUserName(decodedToken.email);
+    } else {
+      setIsLoggedIn(false); // User is not logged in
+    }
+  }, []);
+
   return (
     <div id="sidebar">
       <div id="sidebar-header">
@@ -26,9 +50,11 @@ function DmNav() {
           </li>
           <li>
             <div id="name-box">
-              <h3>thaveesha@gmail.com</h3>
+              <h3>{userName}</h3>
             </div>
-            <button id="logout-btn">Logout</button>
+            <button id="logout-btn" onClick={logout}>
+              Logout
+            </button>
           </li>
         </ul>
       </nav>

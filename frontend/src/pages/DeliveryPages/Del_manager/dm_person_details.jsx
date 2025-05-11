@@ -78,7 +78,7 @@ function dm_person_details() {
             placeholder="Search by email"
           />
           <button id="Search-btn" onClick={clearInput}>
-            <span>Clear X</span>
+            <span>Clear</span>
             <div id="icon-div">
               <FaTimes size={15} color="white" />
             </div>
