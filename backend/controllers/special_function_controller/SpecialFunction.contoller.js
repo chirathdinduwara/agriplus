@@ -88,7 +88,7 @@ export const getWeather = async (req, res) => {
         q: city,
         appid: API_KEY, 
         units: "metric",
-        cnt: 7 
+        cnt: 16
       }
     });
 

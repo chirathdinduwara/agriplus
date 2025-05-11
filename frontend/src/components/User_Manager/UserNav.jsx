@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../../css/HomePage/userProfile.css';
 import { GoChevronRight, GoPerson, GoCodeOfConduct, GoPackage, GoPersonFill, GoReply,GoHome    } from "react-icons/go";
+import { WiNightAltCloudyHigh } from "react-icons/wi";
 import logo from "../../assets/Graphics/black.png";
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
@@ -68,7 +69,15 @@ function UserNav() {
                         <Link className="list_none" to='SmartAssit'><GoChevronRight /></Link> 
                     </li>
                     <li className="nav-list-item">
+<<<<<<< HEAD
                         <Link className="list_none" to='userTracking'> <GoPackage size={30}/>Track Orders</Link>
+=======
+                        <Link className="list_none" to='GetWeather'> <WiNightAltCloudyHigh size={30}/> Get Weather</Link>
+                        <Link className="list_none" to='SmartAssit'><GoChevronRight /></Link> 
+                    </li>
+                    <li className="nav-list-item">
+                        <Link className="list_none" to='TrackOrders'> <GoPackage size={30}/>Track Orders</Link>
+>>>>>>> master
                         <Link className="list_none" to='TrackOrders'><GoChevronRight /></Link> 
                     </li>
                     <li className="nav-list-item">
