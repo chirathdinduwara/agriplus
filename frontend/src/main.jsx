@@ -43,6 +43,7 @@ import Dm_person_details from "./pages/DeliveryPages/Del_manager/dm_person_detai
 
 import Dp_dashboard from "./pages/DeliveryPages/del_person/dp_dashboard.jsx";
 import Dp_deliveries from "./pages/DeliveryPages/del_person/dp_deliveries.jsx";
+import UserActivity from "./components/HomePage/user_activity.jsx";
 
 const router = createBrowserRouter([
   {
@@ -219,6 +220,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "user_activity",
+    element: <UserActivity />,
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
