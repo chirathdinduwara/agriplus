@@ -38,8 +38,7 @@ function StaffNav() {
                 <h1 className="nav-head">Hi! 😎 {userName}</h1>
                     <li><Link className='text-none a-nav-link' to="/s-dash">Dashboard</Link></li>
                     <li><Link className='text-none a-nav-link' to="manPrd">Manage Products</Link></li>
-                    <li><Link className='text-none a-nav-link' to="payments">Payments</Link></li>
-                    <li><Link className='text-none a-nav-link' to="payments">Profile</Link></li>
+    
                 </ul>
 
                 <div className="nav-a">
