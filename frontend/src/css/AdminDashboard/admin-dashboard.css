@@ -74,11 +74,17 @@
     height: 100vh;
     display: flex;
 }
+.admin-dash {
+    background: url('../../assets/Graphics/bg-dash-staff.svg') no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
 
 .admin-dash-heading {
     font-family: "Outfit", serif;
     padding: 40px;
-    color: #252C48;
+    color: #ffffff;
 }
 
 .summary-section {
