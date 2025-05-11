@@ -68,7 +68,7 @@ function UserNav() {
                         <Link className="list_none" to='SmartAssit'><GoChevronRight /></Link> 
                     </li>
                     <li className="nav-list-item">
-                        <Link className="list_none" to='TrackOrders'> <GoPackage size={30}/>Track Orders</Link>
+                        <Link className="list_none" to='userTracking'> <GoPackage size={30}/>Track Orders</Link>
                         <Link className="list_none" to='TrackOrders'><GoChevronRight /></Link> 
                     </li>
                     <li className="nav-list-item">

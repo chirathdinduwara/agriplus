@@ -1,0 +1,55 @@
+.tracking-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.tracking-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.tracking-loading,
+.tracking-empty {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.tracking-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tracking-header,
+.tracking-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  font-size: 16px;
+}
+
+.tracking-header {
+  background-color: #e0e0e0;
+  font-weight: 600;
+  color: #333;
+}
+
+.tracking-row {
+  background: #fafafa;
+  transition: background 0.2s ease;
+}
+
+.tracking-row:hover {
+  background: #f1f1f1;
+}

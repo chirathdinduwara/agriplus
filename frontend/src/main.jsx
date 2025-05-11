@@ -46,7 +46,7 @@ import Dp_deliveries from "./pages/DeliveryPages/del_person/dp_deliveries.jsx";
 import DelManLogin from "./pages/LoginPages/DelManLogin.jsx";
 import DelPerLogin from "./pages/LoginPages/DelPersonLogin.jsx";
 import Dp_profile from "./pages/DeliveryPages/del_person/dp_profile.jsx";
-
+import UserTracking from "./components/User_Manager/UserTrak.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -94,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "editDetails/:dId",
         element: <EditFarmingDetails />,
+      },
+      {
+        path: "userTracking",
+        element: <UserTracking />,
       },
     ],
   },
@@ -231,7 +235,7 @@ const router = createBrowserRouter([
       {
         path: "dp-profile",
         element: <Dp_profile />,
-      }
+      },
     ],
   },
 ]);
