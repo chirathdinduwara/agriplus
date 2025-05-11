@@ -1,9 +1,9 @@
-
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import '../../css/Login/delPersonLogin.css'
+import "../../css/DeliveryCss/Del_person/dp_login.css";
+import img from "../../assets/images/graphics/delivery.jpg";
 
 function DelPerLogin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -12,7 +12,7 @@ function DelPerLogin() {
   const login = async (userData) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/delPerlogin`,
+        `http://localhost:5000/api/deliver-person/login`,
         userData
       );
       if (response.data.token) {
@@ -33,60 +33,57 @@ function DelPerLogin() {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     const data = await login(formData);
     if (data.success) {
       toast.success("Login Successful!");
       localStorage.setItem("token", data.token);
       setTimeout(() => {
-        navigate("/delPer-dash"); // Redirect after login
+        navigate("/dp-dashboard");
       }, 1000);
     } else {
-      toast.error(
-        data.message || "Login failed, please check your credentials."
-      );
+      toast.error(data.message || "Login failed, please check your credentials.");
     }
   };
 
   return (
     <>
-      <div id="login">
+      <div className="delper-login">
         <img
-          id="r-log"
-          src="../src/assets/images/graphics/login.svg"
-          alt=""
+          className="login-graphic"
+          src={img}
+          alt="Login Graphic"
         />
-        <div id="l-log">
-          <form id="log-in" onSubmit={handleLogin}>
-            <h1 id="log-head">Delivery Person Log-In</h1>
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-              value={formData.email}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={formData.password}
-              required
-            />
-            <button id="login-btn2" type="submit">
-              Login
-            </button>
-
-            <p>
-              ⬅{" "}
-              <Link id="link" to="/">
-                Home
-              </Link>
-            </p>
-          </form>
-        </div>
+        <form className="delper-login-form" onSubmit={handleLogin}>
+          <h1>Delivery Person Login</h1>
+          <input
+            type="email"
+            className="delper-input"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            className="delper-input"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <button className="delper-login-btn" type="submit">
+            Login
+          </button>
+          <p className="delper-redirect">
+            ⬅{" "}
+            <Link className="delper-link" to="/">
+              Home
+            </Link>
+          </p>
+        </form>
         <ToastContainer />
       </div>
     </>

@@ -2,7 +2,7 @@
 #sidebar {
   width: 270px;
   height: 100%;
-  background-color: #333;
+  background-color: #101f30;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@
 
 #sidebar-header {
   padding: 20px;
-  background-color: #444;
+  background-color: #17293d;
   color: #fff;
   height: 100px;
   text-align: center;
@@ -82,9 +82,13 @@
   flex-direction: row;
 }
 
-#name-box h3{
-  margin-left: 10px;
+#name-box h3 {
+  margin-left: 32px;
   margin-top: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #nav li:last-child {
@@ -120,8 +124,8 @@
 /* Main Content (body of the page) */
 #main-content {
   display: flex;
+  margin-left: 250px;
   height: 100vh; /* Ensures the main content stretches the full height of the viewport */
-  margin-left: 250px; /* Offsets content to make space for sidebar */
 }
 
 /* Sub-content (where the Outlet component will appear) */

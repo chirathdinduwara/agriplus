@@ -43,6 +43,9 @@ import Dm_person_details from "./pages/DeliveryPages/Del_manager/dm_person_detai
 
 import Dp_dashboard from "./pages/DeliveryPages/del_person/dp_dashboard.jsx";
 import Dp_deliveries from "./pages/DeliveryPages/del_person/dp_deliveries.jsx";
+import DelManLogin from "./pages/LoginPages/DelManLogin.jsx";
+import DelPerLogin from "./pages/LoginPages/DelPersonLogin.jsx";
+import Dp_profile from "./pages/DeliveryPages/del_person/dp_profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -206,17 +209,29 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "dm-login",
+    element: <DelManLogin />,
+  },
+  {
+    path: "dp-login",
+    element: <DelPerLogin />,
+  },
+  {
     path: "dp-dashboard",
     element: <Dp_dashboard />,
     children: [
       {
         index: true,
-        element: <Dp_dashboard />,
+        element: <Dp_deliveries />,
       },
       {
         path: "my-deliveries",
         element: <Dp_deliveries />,
       },
+      {
+        path: "dp-profile",
+        element: <Dp_profile />,
+      }
     ],
   },
 ]);
