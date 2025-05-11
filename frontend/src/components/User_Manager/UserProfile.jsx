@@ -2,7 +2,7 @@
 
 import { Outlet } from 'react-router-dom';
 import '../../css/HomePage/userProfile.css';
-import UserNav from './usernav';
+import UserNav from './UserNav';
 
 
 function UserProfile() {

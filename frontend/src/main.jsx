@@ -43,6 +43,7 @@ import Dm_person_details from "./pages/DeliveryPages/Del_manager/dm_person_detai
 
 import Dp_dashboard from "./pages/DeliveryPages/del_person/dp_dashboard.jsx";
 import Dp_deliveries from "./pages/DeliveryPages/del_person/dp_deliveries.jsx";
+import GetWeather from "./components/SpecialFunction/GetWeather.jsx";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
         path: "editDetails/:dId",
         element: <EditFarmingDetails />,
       },
+      {
+        path: 'GetWeather',
+        element: <GetWeather />
+      }
     ],
   },
   {

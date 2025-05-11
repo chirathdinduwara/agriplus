@@ -96,6 +96,7 @@ function EditFarmingDetails() {
                         type="number"
                         value={formData.area}
                         onChange={handleChange} 
+                        min={1}
                         required
                         placeholder="Enter Area"
                     />
