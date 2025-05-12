@@ -33,7 +33,7 @@ AgriPlus is a web-based platform designed to simplify the process of purchasing 
 #### Delivery Personnel
 - View assigned deliveries.
 - Update delivery status in real-time:
-  - Pending
+  - ending
   - On the Way
   - Completed
 
