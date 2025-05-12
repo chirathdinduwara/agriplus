@@ -1,7 +1,7 @@
 import express from "express";
 import { registerUser, adminLogin, registerAdmin, userLogin, allUsers, getUser, updateUser, removeUser, getAdmins, staffLogin, registerStaff, allStaff, updateStaff, getStaff } from "../../controllers/user_controller/auth.controller.js";
 
-
+TTT
 const router = express.Router();
 
 router.post("/sign-up", registerUser);
