@@ -20,5 +20,5 @@ router.post("/staffSignUp" , registerStaff);
 router.get("/staffs", allStaff);
 router.put("/staff/:id", updateStaff);
 router.get("/staff/:id", getStaff);
-www
+
 export default router;
