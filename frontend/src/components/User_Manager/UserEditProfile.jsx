@@ -55,7 +55,7 @@ function UserEditProfile() {
                     </div>
                     <hr className="pad-10"/>
                     <div className="u-d-item">
-                    <p className="u-n">Email</p>
+                    <p className="u-n">Emakkkkkkkkkkkkkkkkkkkkkkkkkkkil</p>
                     <p className="u-e">{user.email}</p>
                     </div>
                     <hr className="pad-10"/>
@@ -76,7 +76,7 @@ function UserEditProfile() {
                 </div>
 
                 <div className="user-actions">
-                    <button className="btn edit-btn">✏️ Edit Details</button>
+                    <button className="btn edit-btn">✏️ Edit eeDetails</button>
                     <button className="btn delete-btn">🗑️ Delete Account</button>
                 </div>
             </div>
