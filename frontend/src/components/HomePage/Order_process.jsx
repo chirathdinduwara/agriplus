@@ -112,7 +112,7 @@ export default function OrderProcess() {
 
   const validate = () => {
     const errors = {};
-    const cardRegex = /^[0-9]|[-]{19}$/; // Simple validation for 16-digit card number
+    const cardRegex = /^(?:\d{4}[- ]?){3}\d{4}$/;
     const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY format
     const cvvRegex = /^[0-9]{3}$/; // 3-digit CVV
 
