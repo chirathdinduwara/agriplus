@@ -33,7 +33,7 @@ function ManageStaff() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/user/${id}`
+        `http://localhost:5000/api/staff/${id}`
       );
       if (response.data.success) {
         setUsers(users.filter((user) => user._id !== id));
@@ -46,6 +46,7 @@ function ManageStaff() {
       toast.error("An error occurred while deleting the user.");
     }
   };
+
   function handleAddUser() {
     navigate("/a-dash/addStaff");
   }

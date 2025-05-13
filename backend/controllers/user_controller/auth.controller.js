@@ -342,3 +342,17 @@ export const getStaff = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+// Delete a staff member by ID
+export const deleteStaff = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const staff = await Staff.findByIdAndDelete(id);
+    if (!staff) {
+      return res.status(404).json({ success: false, message: "Staff not found" });
+    }
+    res.status(200).json({ success: true, message: "Staff deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};

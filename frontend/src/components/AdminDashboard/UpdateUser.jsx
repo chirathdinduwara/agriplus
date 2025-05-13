@@ -5,30 +5,26 @@ import { useParams, useNavigate } from "react-router-dom";
 
 function UpdateUser() {
   const navigate = useNavigate();
-  const { userId } = useParams(); // Get user ID from URL To navigate back or to another page
+  const { userId } = useParams();
 
-  console.log("User ID:", userId);
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
     phone: "",
     address: "",
-    password: "",
+    password: "", // leave this empty intentionally
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   useEffect(() => {
-    // Fetch user data when component mounts
     async function fetchUserData() {
       try {
         const response = await axios.get(
           `http://localhost:5000/api/user/${userId}`
         );
         if (response.data.success) {
-          setFormData(response.data.user); // Populate the form with the fetched data
+          const user = response.data.user;
+          // Do not set password from backend
+          setFormData({ ...user, password: "" });
         } else {
           console.log("User not found");
         }
@@ -40,6 +36,10 @@ function UpdateUser() {
     fetchUserData();
   }, [userId]);
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,10 +49,16 @@ function UpdateUser() {
       return;
     }
 
+    // Prepare update data (exclude password if not changed)
+    const updatedData = { ...formData };
+    if (!updatedData.password) {
+      delete updatedData.password;
+    }
+
     try {
       const response = await axios.put(
         `http://localhost:5000/api/user/${userId}`,
-        formData
+        updatedData
       );
       if (response.data.success) {
         toast.success("User updated successfully!");
@@ -71,7 +77,6 @@ function UpdateUser() {
   const validateForm = (formData) => {
     const errors = {};
 
-    // Ensure all values are treated as strings
     const fullName = String(formData.full_name || "").trim();
     const email = String(formData.email || "").trim();
     const phone = String(formData.phone || "").trim();
@@ -98,9 +103,7 @@ function UpdateUser() {
       errors.address = "Address is required.";
     }
 
-    if (!password) {
-      errors.password = "Password is required.";
-    } else if (password.length < 8) {
+    if (password && password.length < 8) {
       errors.password = "Password must be at least 8 characters long.";
     }
 
@@ -158,7 +161,7 @@ function UpdateUser() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required
+            placeholder="Enter new password (if changing)"
           />
         </div>
         <div className="button-group">
