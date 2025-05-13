@@ -9,6 +9,11 @@ import { toast, ToastContainer } from "react-toastify";
 
 function ManageUser() {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredUsers = users.filter((user) =>
+    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const navigate = useNavigate();
   // Fetch all users
@@ -99,6 +104,15 @@ function ManageUser() {
             <button className="pdf-btn" onClick={generatePDF}>
               Get PDF
             </button>
+            <div className="search-bar-user">
+              <input
+                type="text"
+                placeholder="Search by Email"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+            </div>
           </div>
           <div className="table-container">
             <table className="manage-table">
@@ -112,7 +126,7 @@ function ManageUser() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
+                {filteredUsers.map((user) => (
                   <tr key={user._id}>
                     <td>{user.full_name}</td>
                     <td>{user.email}</td>
