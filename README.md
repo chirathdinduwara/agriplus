@@ -46,10 +46,10 @@ AgriPlus is a web-based platform designed to simplify the process of purchasing 
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript, (Framework if used, e.g., React/Vue)
-- **Backend:** Node.js / Django / Laravel (Update as per your project)
-- **Database:** MySQL / MongoDB / PostgreSQL
-- **APIs:** Weather API (e.g., OpenWeather), Location Services
+- **Frontend:** React.js
+- **Backend:** Node.js 
+- **Database:** MongoDB 
+- **APIs:** Weather API (OpenWeather)
 
 
 
