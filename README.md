@@ -49,7 +49,7 @@ AgriPlus is a web-based platform designed to simplify the process of purchasing 
 - **Frontend:** React.js
 - **Backend:** Node.js 
 - **Database:** MongoDB 
-- **APIs:** Weather API (OpenWeather)
+- **APIs:** Weather API (OpenWeather), Google Gemini
 
 
 
